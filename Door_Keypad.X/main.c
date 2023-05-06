@@ -13,9 +13,9 @@
 // CONFIG
 #pragma config FOSC = HS        // Oscillator Selection bits (RC oscillator)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT enabled)
-#pragma config PWRTE = ON       // Power-up Timer Enable bit (PWRT disabled)
+#pragma config PWRTE = OFF       // Power-up Timer Enable bit (PWRT disabled)
 #pragma config BOREN = ON       // Brown-out Reset Enable bit (BOR enabled)
-#pragma config LVP = ON         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
+#pragma config LVP = OFF         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
 #pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
 #pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
@@ -28,11 +28,20 @@
 #include <time.h>               // for time functions (to use with srand and rand functions)
 #include <stdio.h>
 
-// preprocessor directives
-#define _XTAL_FREQ 20000000     // oscillator frequency
+#define REAL
 
-#define LCD_EN PORTEbits.RE1
-#define LCD_RS PORTEbits.RE2
+// preprocessor directives
+#ifdef SIM
+    #define _XTAL_FREQ 20000000     // oscillator frequency
+    #define LCD_EN PORTEbits.RE1
+    #define LCD_RS PORTEbits.RE2
+#endif
+#ifdef REAL
+    #define _XTAL_FREQ 4000000
+    #define LCD_EN PORTEbits.RE0
+    #define LCD_RS PORTEbits.RE2
+#endif
+
 #define LCDPORT PORTD
 
 #define LCDPORT_DIR TRISD
@@ -98,7 +107,7 @@ char* random_string(void);
 
 /* ------------------- MAIN PROGRAM -------------------- */
 int main()
-{
+{    
     // registers initalization
     TRISB = 0x00;                                                                       // all PORTB ports as OUTPUT
     INTCON |= 0xA0;                                                                     // interrupt management
@@ -114,10 +123,10 @@ int main()
 
     // code loop
     while(1)
-    {
+    {    
         TRISB = 0x00;                                                                   // set RB7 as output
         TRISD = 0x0F;                                                                   // initialize 4 LSB of PORTD
-        
+                
         // if "#" button has been pressed
         //------------- keypad ---------------
         for (colScan = 0; colScan < 3; colScan++)

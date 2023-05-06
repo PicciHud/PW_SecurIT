@@ -9,11 +9,11 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - EBh		(dist/default/production\Door_Keypad.X.production.hex)
-  9ECh - FFFh		(dist/default/production\Door_Keypad.X.production.hex)
+  9F0h - FFFh		(dist/default/production\Door_Keypad.X.production.hex)
   4000h - 4007h		(dist/default/production\Door_Keypad.X.production.hex)
   400Eh - 400Fh		(dist/default/production\Door_Keypad.X.production.hex)
  Unused ranges:
-  ECh - 9EBh
+  ECh - 9EFh
   1000h - 3FFFh
   4008h - 400Dh
 
@@ -40,7 +40,6 @@
 000000D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000000E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- --
 ----------------------------------------------------------
-000009E0 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
 000009F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000A00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000A10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
