@@ -74,19 +74,17 @@ const unsigned char colMask[3] = {
 
 // filter data read from PORTD
 const unsigned char rowMask[4] = {
-    0b00000001, // Riga 1
-    0b00000010, // Riga 2
-    0b00000100, // Riga 3
-    0b00001000  // Riga 4
+    0b00000001, // Row 1
+    0b00000010, // Row 2
+    0b00000100, // Row 3
+    0b00001000  // Row 4
 };
 
 // variables that contain the row and col where we are
 unsigned char colScan = 0;
 unsigned char rowScan = 0;
 
-// Array col valore del tasto presente sulla scheda
-// ATTENZIONE: l'ordine corretto è dal basso verso l'alto, altrimenti
-//             sono invertiti i valori associati ai tasti lungo la colonna
+// keypad button values
 const unsigned char keys[] = {'*', 7, 4, 1, 0, 8, 5, 2, '#', 9, 6, 3};                  // Key sequence (0 -> '*', 1 -> '7', 2 -> '4', ...)
 
 
@@ -131,7 +129,7 @@ int main()
         //------------- keypad ---------------
         for (colScan = 0; colScan < 3; colScan++)
         {
-            // Qui metto il codice che controlla PORTD
+            // code that controls PORTD
             PORTB = PORTB | 0x07;                                                       // 111 all columns to 1
             PORTB = PORTB & colMask[colScan];                                           // set current column to zero to select it
 
@@ -214,7 +212,7 @@ void lcd_cmd(unsigned char val)
     LCDPORT = val;
     LCD_RS = 0;
     __delay_ms(3);
-    LCD_EN = 0;                                                                         // Falling edge for data loading
+    LCD_EN = 0;                                                                         // falling edge for data loading
     __delay_ms(3);
     
     LCD_EN = 1;
@@ -256,11 +254,11 @@ void lcd_str(const char* str)
 void lcd_send(char dato, char tipo)                                                     // 1st param: data - 2nd param: data type (if 1 data to write on display, if 0 command/setting)
 {             
     
-    // Configurazione porte di connessione
+    // port connection configuration
     LCDPORT_DIR = 0x00;                                                                 // TRISD 0000 0000 - OUTPUT
     LCDPORT_EN_DIR = 0;
     LCDPORT_RS_DIR = 0;
-    // Procedura di scrittura sul display
+    // display writing procedure
     LCD_EN = 1;
     LCDPORT = dato;                                                                     // save data into this variable
     LCD_RS = tipo;                                                                      
