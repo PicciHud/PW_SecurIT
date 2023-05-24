@@ -10,7 +10,7 @@
 # 14 "main.c"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
-#pragma config PWRTE = OFF
+#pragma config PWRTE = ON
 #pragma config BOREN = ON
 #pragma config LVP = OFF
 #pragma config CPD = OFF
@@ -2089,6 +2089,17 @@ extern int printf(const char *, ...);
 # 65 "main.c"
 unsigned char keypressed = 0;
 char keyok;
+char dato[50];
+int i = 0;
+char received;
+char code_generate_send;
+int countOn = 0;
+int countSec = 0;
+int numSec = 60;
+char stop_wait = 0;
+char buff[2];
+
+
 
 const unsigned char colMask[3] = {
 
@@ -2110,8 +2121,6 @@ unsigned char colScan = 0;
 unsigned char rowScan = 0;
 
 
-
-
 const unsigned char keys[] = {'*', 7, 4, 1, 0, 8, 5, 2, '#', 9, 6, 3};
 
 
@@ -2131,6 +2140,12 @@ void initKeyPad(void);
 char* random_string(void);
 
 
+void UART_init(long int baudrate);
+void UART_TxChar(char ch);
+void UART_TxString(const char* str);
+
+
+
 int main()
 {
 
@@ -2140,6 +2155,7 @@ int main()
     TMR0 = 6;
 
 
+    UART_init(115200);
     lcd_init();
     initKeyPad();
 
@@ -2164,7 +2180,7 @@ int main()
             {
                 if (!(PORTD & rowMask[rowScan]))
                 {
-                    _delay((unsigned long)((5)*(4000000/4000.0)));
+                    _delay((unsigned long)((5)*(20000000/4000.0)));
 
                     if (!(PORTD & rowMask[rowScan]))
                     {
@@ -2187,6 +2203,10 @@ int main()
                     lcd_str(code);
 
 
+                    UART_TxString(code);
+
+
+                    code_generate_send = 1;
                 }
 
 
@@ -2208,6 +2228,31 @@ int main()
 
 
             }
+
+        }
+
+        if(code_generate_send)
+        {
+            if(received)
+            {
+# 241 "main.c"
+                code_generate_send = 0;
+                received = 0;
+            }
+            else
+            {
+                itoa(buff, numSec, 10);
+                lcd_send(0xC0, 0);
+                lcd_str(buff);
+
+                if(stop_wait)
+                {
+                    lcd_send(0x01, 0);
+                    lcd_str("waiting");
+                    stop_wait = 0;
+                    code_generate_send = 0;
+                }
+            }
         }
     }
 
@@ -2221,43 +2266,43 @@ int main()
 
 void lcd_dat(unsigned char val)
 {
-    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 1;
 
     PORTD = val;
     PORTEbits.RE2 = 1;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
-    PORTEbits.RE0 = 0;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
+    _delay((unsigned long)((3)*(20000000/4000.0)));
+    PORTEbits.RE1 = 0;
+    _delay((unsigned long)((3)*(20000000/4000.0)));
 
-    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 1;
 }
 
 void lcd_cmd(unsigned char val)
 {
-    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 1;
 
     PORTD = val;
     PORTEbits.RE2 = 0;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
-    PORTEbits.RE0 = 0;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
+    _delay((unsigned long)((3)*(20000000/4000.0)));
+    PORTEbits.RE1 = 0;
+    _delay((unsigned long)((3)*(20000000/4000.0)));
 
-    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 1;
 }
 
 void lcd_init(void)
 {
     TRISD = 0x00;
     TRISE = 0x00;
-    PORTEbits.RE0 = 0;
+    PORTEbits.RE1 = 0;
     PORTEbits.RE2 = 0;
-    _delay((unsigned long)((20)*(4000000/4000.0)));
-    PORTEbits.RE0 = 1;
+    _delay((unsigned long)((20)*(20000000/4000.0)));
+    PORTEbits.RE1 = 1;
 
     lcd_cmd(0x38);
-    _delay((unsigned long)((5)*(4000000/4000.0)));
+    _delay((unsigned long)((5)*(20000000/4000.0)));
     lcd_cmd(0x38);
-    _delay((unsigned long)((1)*(4000000/4000.0)));
+    _delay((unsigned long)((1)*(20000000/4000.0)));
     lcd_cmd(0x38);
     lcd_cmd(0x08);
     lcd_cmd(0x0F);
@@ -2286,13 +2331,13 @@ void lcd_send(char dato, char tipo)
     TRISEbits.TRISE1 = 0;
     TRISEbits.TRISE2 = 0;
 
-    PORTEbits.RE0 = 1;
+    PORTEbits.RE1 = 1;
     PORTD = dato;
     PORTEbits.RE2 = tipo;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
-    PORTEbits.RE0 = 0;
-    _delay((unsigned long)((3)*(4000000/4000.0)));
-    PORTEbits.RE0 = 1;
+    _delay((unsigned long)((3)*(20000000/4000.0)));
+    PORTEbits.RE1 = 0;
+    _delay((unsigned long)((3)*(20000000/4000.0)));
+    PORTEbits.RE1 = 1;
 }
 
 
@@ -2320,4 +2365,85 @@ char* random_string(void) {
     str[5] = '\0';
 
     return str;
+}
+
+
+void UART_init(long int baudrate)
+{
+    TRISC &= ~0x40;
+    TRISC |= 0x80;
+    TXSTA |= 0x24;
+
+
+    RCSTA |= 0x80;
+    RCSTA |= 0x10;
+
+    SPBRG = (char) (20000000 / (long) (64UL * baudrate)) - 1;
+
+    INTCON |= 0x80;
+    INTCON |= 0x40;
+    PIE1 |= 0x20;
+}
+
+void UART_TxChar(char ch)
+{
+    while (!(PIR1 & 0x10));
+
+    PIR1 &= ~0x10;
+
+    TXREG = ch;
+
+}
+
+void UART_TxString(const char* str)
+{
+    unsigned char i = 0;
+
+    while (str[i] != 0)
+    {
+        UART_TxChar(str[i]);
+        i++;
+    }
+}
+
+
+
+
+void __attribute__((picinterrupt(("")))) ISR()
+{
+    if (RCIF)
+    {
+        dato[i++] = RCREG;
+        dato[i] = '\0';
+        received = 1;
+        RCIF = 0;
+    }
+
+    if (INTCON & 0x04)
+    {
+        INTCON &= ~0x04;
+        TMR0 = 6;
+
+        if(code_generate_send)
+        {
+
+            countOn++;
+            countSec++;
+
+
+            if (countSec > 250)
+            {
+                numSec--;
+                countSec = 0;
+            }
+
+
+            if (countOn >= 15000)
+            {
+                stop_wait = 1;
+                countOn = 0;
+                numSec = 60;
+            }
+        }
+    }
 }
