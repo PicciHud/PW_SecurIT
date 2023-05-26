@@ -256,7 +256,7 @@ int main()
                 if(stop_wait)                                                           // if 1 minute timer stopped
                 {
                     lcd_send(L_CLR, COMMAND);                                           // refresh display
-                    lcd_str("waiting");
+                    lcd_str("waiting...");
                     stop_wait = 0;                                                      // reset variable for next timer on
                     code_generate_send = 0;                                             // reset condition
                 }

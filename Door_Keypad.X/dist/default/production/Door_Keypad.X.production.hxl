@@ -9,12 +9,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\Door_Keypad.X.production.hex)
-  8h - D25h		(dist/default/production\Door_Keypad.X.production.hex)
+  8h - D69h		(dist/default/production\Door_Keypad.X.production.hex)
   4000h - 4007h		(dist/default/production\Door_Keypad.X.production.hex)
   400Eh - 400Fh		(dist/default/production\Door_Keypad.X.production.hex)
  Unused ranges:
   6h - 7h
-  D26h - 3FFFh
+  D6Ah - 3FFFh
   4008h - 400Dh
 
 ### Hex Memory Map ###
@@ -234,6 +234,10 @@
 00000CF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000D00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000D10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000D20 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
+00000D20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000D30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000D40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000D50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000D60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- --
 ----------------------------------------------------------
 00004000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1

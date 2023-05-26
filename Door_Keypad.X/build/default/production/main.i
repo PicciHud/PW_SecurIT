@@ -2169,73 +2169,79 @@ int main()
         TRISD = 0x0F;
 
 
-
-        for (colScan = 0; colScan < 3; colScan++)
+        if(!code_generate_send)
         {
 
-            PORTB = PORTB | 0x07;
-            PORTB = PORTB & colMask[colScan];
 
-            for (rowScan = 0; rowScan < 4; rowScan++)
+            for (colScan = 0; colScan < 3; colScan++)
             {
-                if (!(PORTD & rowMask[rowScan]))
-                {
-                    _delay((unsigned long)((5)*(20000000/4000.0)));
 
+                PORTB = PORTB | 0x07;
+                PORTB = PORTB & colMask[colScan];
+
+                for (rowScan = 0; rowScan < 4; rowScan++)
+                {
                     if (!(PORTD & rowMask[rowScan]))
                     {
+                        _delay((unsigned long)((5)*(20000000/4000.0)));
 
-                        keypressed = rowScan + (4 * colScan);
-                        keyok = 1;
+                        if (!(PORTD & rowMask[rowScan]))
+                        {
+
+                            keypressed = rowScan + (4 * colScan);
+                            keyok = 1;
+                        }
                     }
                 }
-            }
 
-            if (keyok)
-            {
-
-                if(keypressed == 8)
+                if (keyok)
                 {
 
-                    lcd_send(0x01, 0);
+                    if(keypressed == 8)
+                    {
 
-                    char* code = random_string();
-                    lcd_str(code);
+                        lcd_send(0x01, 0);
 
+                        char* code = random_string();
 
-                    UART_TxString(code);
-
-
-                    code_generate_send = 1;
-                }
+                        lcd_str(code);
 
 
-                if (keypressed == 7)
-                {
-                    lcd_send(0x01, 0);
-                    lcd_str("28753");
-                }
-
-                keyok = 0;
+                        UART_TxString(code);
 
 
-                PORTD = PORTD | 0x0F;
-                while ((PORTD & 0x0F) != 0x0F)
-                {
+                        code_generate_send = 1;
+                    }
+
+
+                    if (keypressed == 7)
+                    {
+                        lcd_send(0x01, 0);
+                        lcd_str("28753");
+                        UART_TxString("28753\r\n");
+                    }
+
+                    keyok = 0;
+
+
                     PORTD = PORTD | 0x0F;
-                    continue;
+                    while ((PORTD & 0x0F) != 0x0F)
+                    {
+                        PORTD = PORTD | 0x0F;
+                        continue;
+                    }
+
+
                 }
 
-
             }
-
         }
 
         if(code_generate_send)
         {
             if(received)
             {
-# 241 "main.c"
+# 247 "main.c"
                 code_generate_send = 0;
                 received = 0;
             }
@@ -2248,7 +2254,7 @@ int main()
                 if(stop_wait)
                 {
                     lcd_send(0x01, 0);
-                    lcd_str("waiting");
+                    lcd_str("waiting...");
                     stop_wait = 0;
                     code_generate_send = 0;
                 }
@@ -2351,7 +2357,7 @@ void initKeyPad() {
 
 
 char* random_string(void) {
-    static char str[6];
+    static char str[8];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
@@ -2362,7 +2368,9 @@ char* random_string(void) {
         str[i] = charset[index];
     }
 
-    str[5] = '\0';
+    str[5] = '\r';
+    str[6] = '\n';
+    str[7] = '\0';
 
     return str;
 }
