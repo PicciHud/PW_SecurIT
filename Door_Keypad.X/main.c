@@ -178,6 +178,7 @@ int main()
                         lcd_send(L_CLR, COMMAND);                                           // clear display
 
                         char* code = random_string();                                       // generate a new random code
+                        
                         lcd_str(code);                                                      // print it into display
 
                         // send code to the gateway (Raspberry Pi) if master select this PIC
@@ -192,6 +193,7 @@ int main()
                     {
                         lcd_send(L_CLR, COMMAND);
                         lcd_str("28753");
+                        UART_TxString("28753\r\n");
                     }
 
                     keyok = 0;                                                              // reset variable for next clicks
@@ -357,7 +359,7 @@ void initKeyPad() {
 
 // --------------- code generator function ------------ //
 char* random_string(void) {
-    static char str[6];
+    static char str[8];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     
     //srand(time(NULL));                                                                // initialize random generator. WARNING: the compiler rise an error if this
@@ -368,7 +370,9 @@ char* random_string(void) {
         str[i] = charset[index];                                                        // for 5 times add the charachter into code array
     }
 
-    str[5] = '\0';                                                                      // add string terminator
+    str[5] = '\r';
+    str[6] = '\n';
+    str[7] = '\0';                                                                      // add string terminator
 
     return str;                                                                         // return the code array as pointer
 }
