@@ -65,6 +65,18 @@ node-red admin hash-pw
 ```
 che viene utilizzato per generare una password crittografata.
 
+## Moduli
+
+Da Settings>Palette installare:
+
+- node-red-node-serialport;
+- node-red-contrib-startup-trigger;
+- node-red-dashboard
+
+![nodered](./asset/nodered-flow.png)
+
+![dashboard](./asset/dashboard.png)
+
 # Mosquitto
 
 Il protocollo MQTT (Message Queue Telemetry Transport) sostanzialmente si basa su un modello di brokering, vale a dire l’esistenza di un soggetto (il broker) al quale tutti i client 
@@ -184,6 +196,8 @@ Se il simulatore del PIC16F877A funziona correttamente e il programma invia dei 
 Inserire i due seguenti moduli:
 
 `mqtt in`, avendo cura di inserire le relative credenziali e `debug`, affinché venga stampato il messaggio o il codice ricevuto sul topic.
+
+![mqtt](./asset/mqtt.png)
 
 ## Collegamenti
 
