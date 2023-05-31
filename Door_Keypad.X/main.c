@@ -66,6 +66,7 @@ unsigned char keypressed = 0;                                                   
 char keyok;                                                                             // variable that shows if any key of keypad has been pressed
 char dato[50];
 int i = 0;
+char dataParsed[50];
 char received;
 char code_generate_send;
 int countOn = 0;                                                                        // counter for 1 minute timer
@@ -118,6 +119,9 @@ char* random_string(void);
 void UART_init(long int baudrate);
 void UART_TxChar(char ch);
 void UART_TxString(const char* str);
+
+void parseData(char data[], char dataParsed[]);
+
 
 
 /* ------------------- MAIN PROGRAM -------------------- */
@@ -216,8 +220,30 @@ int main()
         {
             if(received)                                                                // if i have received a message from serial communication
             {
-                /*
+                lcd_send(L_CLR, COMMAND);
+                //lcd_str(dato);
+                
+                lcd_str("Insert code");
+                lcd_send(L_L2, COMMAND);
+                
                 // interpreto il messaggio
+                parseData(dato, dataParsed);
+                
+                lcd_str(dataParsed);
+                
+                // leggo l'input sul tastierino dell'utente
+                
+                // è stato premuto un pulsante?
+                // if(keyok)
+                // se si verifico quale
+                // se il tasto è un numero allora aggiungo il tutto in una stringa
+                // se la stringa è minore di 16 continuo, altrimenti blocco il tutto
+                // quando l'utente preme * o # faccio il confronto delle due stringhe
+                // verificando prima di tutto che la lunghezza delle due stringhe sia
+                // la stessa e successivamente la corrispondenza esatta delle cifre
+                // se passa nel frattempo un minuto, blocco la connessione
+                // inserire anche un numero max di tentativi, oltre i quali si blocca la connessione.
+                // azzerare anche tutti le variabili che gestiscono i timer.
                 // split string into variables
                 char id;                                                                // receiver ID
                 char confirm_request;
@@ -242,8 +268,10 @@ int main()
 
                 // reset logical variables
 
-                */
-
+                
+                
+                __delay_ms(5000);
+                i = 0;
                 code_generate_send = 0;
                 received = 0;   
             }
@@ -362,7 +390,7 @@ char* random_string(void) {
     static char str[8];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     
-    //srand(time(NULL));                                                                // initialize random generator. WARNING: the compiler rise an error if this
+    srand(TMR0);                                                                // initialize random generator. WARNING: the compiler rise an error if this
                                                                                         // code uncommented, probably due to "time" function call in srand.
 
     for (int i = 0; i < 5; i++) {
@@ -414,6 +442,28 @@ void UART_TxString(const char* str)
         UART_TxChar(str[i]);
         i++;
     }
+}
+
+void parseData(char data[], char dataParsed[])
+{
+    int i = 0;
+    int j = 0;
+    
+    while(data[i] != '\0')
+    {
+        if(data[i] >= 48 && data[i] <= 57) // if is a number
+        {
+            dataParsed[j] = data[i];
+            j++;
+        }
+        
+        i++;
+    }
+    
+    j++;
+    data[j] = '\0';
+    
+    return;
 }
 
 

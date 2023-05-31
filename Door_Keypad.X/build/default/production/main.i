@@ -2091,6 +2091,7 @@ unsigned char keypressed = 0;
 char keyok;
 char dato[50];
 int i = 0;
+char dataParsed[50];
 char received;
 char code_generate_send;
 int countOn = 0;
@@ -2143,6 +2144,9 @@ char* random_string(void);
 void UART_init(long int baudrate);
 void UART_TxChar(char ch);
 void UART_TxString(const char* str);
+
+void parseData(char data[], char dataParsed[]);
+
 
 
 
@@ -2241,7 +2245,25 @@ int main()
         {
             if(received)
             {
-# 247 "main.c"
+                lcd_send(0x01, 0);
+
+
+                lcd_str("Insert code");
+                lcd_send(0xC0, 0);
+
+
+                parseData(dato, dataParsed);
+
+                lcd_str(dataParsed);
+# 248 "main.c"
+                char id;
+                char confirm_request;
+                char CRC_response;
+                char data;
+                char CRC;
+# 273 "main.c"
+                _delay((unsigned long)((5000)*(20000000/4000.0)));
+                i = 0;
                 code_generate_send = 0;
                 received = 0;
             }
@@ -2360,7 +2382,7 @@ char* random_string(void) {
     static char str[8];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-
+    srand(TMR0);
 
 
     for (int i = 0; i < 5; i++) {
@@ -2412,6 +2434,28 @@ void UART_TxString(const char* str)
         UART_TxChar(str[i]);
         i++;
     }
+}
+
+void parseData(char data[], char dataParsed[])
+{
+    int i = 0;
+    int j = 0;
+
+    while(data[i] != '\0')
+    {
+        if(data[i] >= 48 && data[i] <= 57)
+        {
+            dataParsed[j] = data[i];
+            j++;
+        }
+
+        i++;
+    }
+
+    j++;
+    data[j] = '\0';
+
+    return;
 }
 
 

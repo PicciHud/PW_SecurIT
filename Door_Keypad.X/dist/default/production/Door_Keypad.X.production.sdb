@@ -13,7 +13,9 @@
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 "5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
-"12 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\rand.c
+"6 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\rand.c
+[v _srand srand `(v  1 e 1 0 ]
+"12
 [v _rand rand `(i  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
@@ -25,29 +27,31 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"124 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
+"128 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"275
+"303
 [v _lcd_dat lcd_dat `(v  1 e 1 0 ]
-"288
+"316
 [v _lcd_cmd lcd_cmd `(v  1 e 1 0 ]
-"301
+"329
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
-"322
+"350
 [v _lcd_str lcd_str `(v  1 e 1 0 ]
-"334
+"362
 [v _lcd_send lcd_send `(v  1 e 1 0 ]
-"353
-[v _initKeyPad initKeyPad `(v  1 e 1 0 ]
-"361
-[v _random_string random_string `(*.4uc  1 e 1 0 ]
 "381
+[v _initKeyPad initKeyPad `(v  1 e 1 0 ]
+"389
+[v _random_string random_string `(*.4uc  1 e 1 0 ]
+"409
 [v _UART_init UART_init `(v  1 e 1 0 ]
-"398
+"426
 [v _UART_TxChar UART_TxChar `(v  1 e 1 0 ]
-"408
+"436
 [v _UART_TxString UART_TxString `(v  1 e 1 0 ]
-"422
+"447
+[v _parseData parseData `(v  1 e 1 0 ]
+"472
 [v _ISR ISR `II(v  1 e 1 0 ]
 "60 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -55,13 +59,13 @@
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "341
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S75 . 1 `uc 1 RE0 1 0 :1:0 
+[s S81 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 ]
 "415
-[u S79 . 1 `S75 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES79  1 e 1 @9 ]
+[u S85 . 1 `S81 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES85  1 e 1 @9 ]
 "455
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
 "533
@@ -82,7 +86,7 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1562
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S87 . 1 `uc 1 TRISE0 1 0 :1:0 
+[s S93 . 1 `uc 1 TRISE0 1 0 :1:0 
 `uc 1 TRISE1 1 0 :1:1 
 `uc 1 TRISE2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -92,8 +96,8 @@
 `uc 1 IBF 1 0 :1:7 
 ]
 "1579
-[u S96 . 1 `S87 1 . 1 0 ]
-[v _TRISEbits TRISEbits `VES96  1 e 1 @137 ]
+[u S102 . 1 `S93 1 . 1 0 ]
+[v _TRISEbits TRISEbits `VES102  1 e 1 @137 ]
 "1619
 [v _PIE1 PIE1 `VEuc  1 e 1 @140 ]
 "2000
@@ -113,48 +117,56 @@
 "68
 [v _i i `i  1 e 2 0 ]
 "69
-[v _received received `uc  1 e 1 0 ]
+[v _dataParsed dataParsed `[50]uc  1 e 50 0 ]
 "70
-[v _code_generate_send code_generate_send `uc  1 e 1 0 ]
+[v _received received `uc  1 e 1 0 ]
 "71
-[v _countOn countOn `i  1 e 2 0 ]
+[v _code_generate_send code_generate_send `uc  1 e 1 0 ]
 "72
-[v _countSec countSec `i  1 e 2 0 ]
+[v _countOn countOn `i  1 e 2 0 ]
 "73
-[v _numSec numSec `i  1 e 2 0 ]
+[v _countSec countSec `i  1 e 2 0 ]
 "74
-[v _stop_wait stop_wait `uc  1 e 1 0 ]
+[v _numSec numSec `i  1 e 2 0 ]
 "75
+[v _stop_wait stop_wait `uc  1 e 1 0 ]
+"76
 [v _buff buff `[2]uc  1 e 2 0 ]
-"79
+"80
 [v _colMask colMask `DC[3]uc  1 e 3 0 ]
-"87
+"88
 [v _rowMask rowMask `DC[4]uc  1 e 4 0 ]
-"95
-[v _colScan colScan `uc  1 e 1 0 ]
 "96
+[v _colScan colScan `uc  1 e 1 0 ]
+"97
 [v _rowScan rowScan `uc  1 e 1 0 ]
-"124
+"128
 [v _main main `(i  1 e 2 0 ]
 {
-"180
-[v main@code code `*.4uc  1 a 1 43 ]
-"268
+"184
+[v main@code code `*.4uc  1 a 1 44 ]
+"296
 } 0
-"361
+"389
 [v _random_string random_string `(*.4uc  1 e 1 0 ]
 {
-"369
-[v random_string@index index `i  1 a 2 27 ]
-"368
-[v random_string@i i `i  1 a 2 29 ]
-"362
+"397
+[v random_string@index index `i  1 a 2 28 ]
+"396
+[v random_string@i i `i  1 a 2 30 ]
+"390
 [v random_string@str str `[8]uc  1 s 8 str ]
-"363
+"391
 [v random_string@charset charset `DC[63]uc  1 s 63 charset ]
-"378
+"406
 } 0
-"12 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\rand.c
+"6 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\rand.c
+[v _srand srand `(v  1 e 1 0 ]
+{
+[v srand@x x `ui  1 p 2 0 ]
+"9
+} 0
+"12
 [v _rand rand `(i  1 e 2 0 ]
 {
 "17
@@ -169,47 +181,62 @@
 [v ___lmul@multiplicand multiplicand `ul  1 p 4 4 ]
 "129
 } 0
-"322 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
+"447 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
+[v _parseData parseData `(v  1 e 1 0 ]
+{
+[v parseData@data data `*.4uc  1 a 1 wreg ]
+"449
+[v parseData@i i `i  1 a 2 6 ]
+"450
+[v parseData@j j `i  1 a 2 4 ]
+"447
+[v parseData@data data `*.4uc  1 a 1 wreg ]
+[v parseData@dataParsed dataParsed `*.5uc  1 p 1 0 ]
+"449
+[v parseData@data data `*.4uc  1 a 1 8 ]
+"467
+} 0
+"350
 [v _lcd_str lcd_str `(v  1 e 1 0 ]
 {
-"324
+"352
 [v lcd_str@i i `uc  1 a 1 6 ]
-"322
+"350
 [v lcd_str@str str `*.26DCuc  1 p 2 3 ]
-"331
+"359
 } 0
-"275
+"303
 [v _lcd_dat lcd_dat `(v  1 e 1 0 ]
 {
 [v lcd_dat@val val `uc  1 a 1 wreg ]
 [v lcd_dat@val val `uc  1 a 1 wreg ]
-"277
+"305
 [v lcd_dat@val val `uc  1 a 1 2 ]
-"286
+"314
 } 0
-"334
+"362
 [v _lcd_send lcd_send `(v  1 e 1 0 ]
 {
 [v lcd_send@dato dato `uc  1 a 1 wreg ]
 [v lcd_send@dato dato `uc  1 a 1 wreg ]
 [v lcd_send@tipo tipo `uc  1 p 1 0 ]
-"338
+"366
 [v lcd_send@dato dato `uc  1 a 1 3 ]
-"349
+"377
 } 0
-"301
+"329
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
 {
-"320
+"348
 } 0
-"288
+"316
 [v _lcd_cmd lcd_cmd `(v  1 e 1 0 ]
 {
 [v lcd_cmd@val val `uc  1 a 1 wreg ]
 [v lcd_cmd@val val `uc  1 a 1 wreg ]
-"290
+"318
 [v lcd_cmd@val val `uc  1 a 1 2 ]
-"299
+"327
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\itoa.c
 [v _itoa itoa `(*.4uc  1 e 1 0 ]
@@ -259,16 +286,16 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
 "30
 } 0
-"353 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
+"381 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
 [v _initKeyPad initKeyPad `(v  1 e 1 0 ]
 {
-"357
+"385
 } 0
-"381
+"409
 [v _UART_init UART_init `(v  1 e 1 0 ]
 {
 [v UART_init@baudrate baudrate `l  1 p 4 15 ]
-"396
+"424
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
@@ -283,25 +310,25 @@
 [v ___aldiv@dividend dividend `l  1 p 4 4 ]
 "41
 } 0
-"408 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
+"436 C:\Users\Filippo\Desktop\PW\PW_SecurIT\Door_Keypad.X\main.c
 [v _UART_TxString UART_TxString `(v  1 e 1 0 ]
 {
-"410
+"438
 [v UART_TxString@i i `uc  1 a 1 5 ]
-"408
+"436
 [v UART_TxString@str str `*.26DCuc  1 p 2 2 ]
-"417
+"445
 } 0
-"398
+"426
 [v _UART_TxChar UART_TxChar `(v  1 e 1 0 ]
 {
 [v UART_TxChar@ch ch `uc  1 a 1 wreg ]
 [v UART_TxChar@ch ch `uc  1 a 1 wreg ]
 [v UART_TxChar@ch ch `uc  1 a 1 1 ]
-"406
+"434
 } 0
-"422
+"472
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"459
+"509
 } 0
