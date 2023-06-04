@@ -11,14 +11,14 @@ parser.on('data', parseMSg)
 // trasformare il dato in json
 
 client.on('connect', function () {
-    console.log("connected")
+    console.log("Connected to its_test")
 })
 
 function parseMSg(data) {
     let values = data.split('\n')
-    console.log(values)
+    //console.log(values)
     let jsonOut = {
-        "code": values[0]//,
+        "codepic": values[0]//,
         //"rasp_id": values[1],
         //"home_id": values[2]
     }
@@ -27,3 +27,13 @@ function parseMSg(data) {
     client.publish('/its_test', jsonStr)
 }
 
+// Ricezione
+
+client.on('connect', function () {
+    console.log("Connected to its_out")
+    client.subscribe('/its_out') // Sottoscrivi al topic '/its_out'
+})
+
+client.on('message', function (topic, message) {
+    console.log(message.toString());
+});
