@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+@for(var i = 0 ; i<10; i++)   // Con la @ richiamo il codice c#, che può essere unito all'html
+{
+    <div class="col-4 bg-success">
+        <p>@i </p>
+    </div>
+}
+
+<h2>Inserire il codice per sbloccare la porta</h2>
+
+<div id="nodeRedDashboard"></div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var iframe = document.createElement('iframe');
+            iframe.src = "http://192.168.0.222:1880/ui";
+            iframe.width = "100%";
+            iframe.height = "500px";
+            document.getElementById("nodeRedDashboard").appendChild(iframe);
+        });
+    </script>
+}
