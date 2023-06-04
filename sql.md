@@ -32,6 +32,7 @@
 [Guida Microsoft per la connessione tramite SSMS](https://learn.microsoft.com/it-it/azure/azure-sql/database/connect-query-ssms?view=azuresql)
 
 - Nella panoramica della risorsa, copiare il nome del server
+
 ```txt
 its-qzer-projectworky2-gruppo7-server.database.windows.net
 ```
@@ -61,14 +62,14 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 
 ## Progettazione del Database
 
-**Pic**
+**Access**
 - idPic (int32)
 - idUser (int32)
 - idHome (int32)
 - idRoom (int32)
 
 **Users**
-- id (int32)
+- idUser (int32)
 - name (string)
 - surname (string)
 - email (string)
@@ -76,9 +77,36 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 - admin (boolean)
 
 **Rooms**
-- id (int32)
+- idHome (int32)
 - idRoom (int32)
 
+![azure_table](./asset/azure_table.png)
 ## Connessione ad Database da Visual Studio
 
+Inserire la *stringa di connessione*
 
+![connection string](./asset/connection_strig.png)
+
+```txt
+Server=tcp:its-qzer-projectworky2-gruppo7-server.database.windows.net,1433;Initial Catalog=SecurITDB;Persist Security Info=False;User ID=securitadmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+```
+
+all'interno del file `appsettings.json`:
+
+```txt
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=tcp:its-qzer-projectworky2-gruppo7-server.database.windows.net,1433;Initial Catalog=SecurITDB;Persist Security Info=False;User ID=securitadmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+// Qui inserire la stringa del db Azure... Crea in automatico le tabelle
+```
+Avendo cura di inserirlo nel file `.gitignore`
