@@ -61,8 +61,8 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 
 ## Progettazione del Database
 
-**Access**
-- id (int32)
+**Pic**
+- idPic (int32)
 - idUser (int32)
 - idHome (int32)
 - idRoom (int32)
@@ -75,13 +75,9 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 - password (string)
 - admin (boolean)
 
-**Home**
-- id (int32)
-- idRoom (int32)
-
 **Rooms**
 - id (int32)
-- idHome (int32)
+- idRoom (int32)
 
 ## Connessione ad Database da Visual Studio
 
