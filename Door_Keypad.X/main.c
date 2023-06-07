@@ -122,6 +122,7 @@ void UART_TxString(const char* str);
 
 void parseData(char data[], char dataParsed[]);
 
+char keyPressed();
 
 
 /* ------------------- MAIN PROGRAM -------------------- */
@@ -150,70 +151,23 @@ int main()
         // if previously has not been pressed any key
         if(!code_generate_send)                                                         // if we want to generate only one code when pressing button
         {                                                                               // so it's implemented something similar to debounce button
-            // if "#" button has been pressed
-            //------------- keypad ---------------
-            for (colScan = 0; colScan < 3; colScan++)
+            // t = keyPressed();
+            
+            if(keyPressed() == '#')
             {
-                // code that controls PORTD
-                PORTB = PORTB | 0x07;                                                       // 111 all columns to 1
-                PORTB = PORTB & colMask[colScan];                                           // set current column to zero to select it
+                lcd_send(L_CLR, COMMAND); // clear display
 
-                for (rowScan = 0; rowScan < 4; rowScan++)                                   // scan one row at a time and
-                {
-                    if (!(PORTD & rowMask[rowScan]))                                        // if "0", button has been pressed
-                    {
-                        __delay_ms(5);
+                char* code = random_string(); // generate a new random code
 
-                        if (!(PORTD & rowMask[rowScan]))
-                        {
-                            // evaluate which button has been pressed
-                            keypressed = rowScan + (4 * colScan);                           // expression to calculate which one of the button has been pressed
-                            keyok = 1;                                                      // button has been pressed (logical state)
-                        }
-                    }
-                }
+                lcd_str(code); // print it into display
 
-                if (keyok)                                                                  // if any key of keypad has been pressed
-                {
-                    // GESTIRE LA PRESSIONE DEL PULSANTE: se l'utente tiene premuto un pulsante della keyboard in ogni caso deve essere rilevato solo una pressione
-                    if(keypressed == 8)                                                     // if '#' key has been pressed
-                    {
-                        // generate random code (5 numbers)
-                        lcd_send(L_CLR, COMMAND);                                           // clear display
-
-                        char* code = random_string();                                       // generate a new random code
-                        
-                        lcd_str(code);                                                      // print it into display
-
-                        // send code to the gateway (Raspberry Pi) if master select this PIC
-                        UART_TxString(code);
-                        // se arriva qualcosa via seriale verifico se l'indirizzo selezionato è il
-                        // mio, altrimenti non prendo in considerazione il messaggio
-                        code_generate_send = 1;                                             // logical state that indicate the code has been send
-                    }
-
-                    // test for debug
-                    if (keypressed == 7)
-                    {
-                        lcd_send(L_CLR, COMMAND);
-                        lcd_str("28753");
-                        UART_TxString("28753\r\n");
-                    }
-
-                    keyok = 0;                                                              // reset variable for next clicks
-
-                    // keep in a loop cicle until key is not released
-                    PORTD = PORTD | 0x0F;
-                    while ((PORTD & 0x0F) != 0x0F)
-                    {
-                        PORTD = PORTD | 0x0F;
-                        continue;
-                    }
-
-                    //__delay_ms(200);                                                      // DO NOT USE: delay that seems to establish keypad click
-                }    
-
+                // send code to the gateway (Raspberry Pi) if master select this PIC
+                UART_TxString(code);
+                // se arriva qualcosa via seriale verifico se l'indirizzo selezionato è il
+                // mio, altrimenti non prendo in considerazione il messaggio
+                code_generate_send = 1;
             }
+        
         }
         
         if(code_generate_send)                                                          // if user have pressed generate code button
@@ -466,6 +420,151 @@ void parseData(char data[], char dataParsed[])
     return;
 }
 
+
+char keyPressed()
+{
+    char tmp;
+    
+            //------------- keypad ---------------
+            for (colScan = 0; colScan < 3; colScan++)
+            {
+                // code that controls PORTD
+                PORTB = PORTB | 0x07;                                                       // 111 all columns to 1
+                PORTB = PORTB & colMask[colScan];                                           // set current column to zero to select it
+
+                for (rowScan = 0; rowScan < 4; rowScan++)                                   // scan one row at a time and
+                {
+                    if (!(PORTD & rowMask[rowScan]))                                        // if "0", button has been pressed
+                    {
+                        __delay_ms(5);
+
+                        if (!(PORTD & rowMask[rowScan]))
+                        {
+                            // evaluate which button has been pressed
+                            keypressed = rowScan + (4 * colScan);                           // expression to calculate which one of the button has been pressed
+                            keyok = 1;                                                      // button has been pressed (logical state)
+                        }
+                    }
+                }
+
+                const unsigned char keys[] = {'*', 7, 4, 1, 0, 8, 5, 2, '#', 9, 6, 3};                  // Key sequence (0 -> '*', 1 -> '7', 2 -> '4', ...)
+
+                if (keyok)                                                                  // if any key of keypad has been pressed
+                {
+                    // GESTIRE LA PRESSIONE DEL PULSANTE: se l'utente tiene premuto un pulsante della keyboard in ogni caso deve essere rilevato solo una pressione
+                    switch(keypressed)
+                    {
+                        case 0: tmp = '*';
+                            break;
+                        case 1: tmp = '7';
+                            break;
+                        case 2: tmp = '4';
+                            break;
+                        case 3: tmp = '1';
+                            break;
+                        case 4: tmp = '0';
+                            break;
+                        case 5: tmp = '8';
+                            break;
+                        case 6: tmp = '5';
+                            break;
+                        case 7: tmp = '2';
+                            break;
+                        case 8: tmp = '#';
+                            break;
+                        case 9: tmp = '9';
+                            break;
+                        case 10: tmp = '6';
+                            break;
+                        case 11: tmp = '3';
+                            break;
+                        default: tmp = '!';
+                            break;
+                    }
+
+                    keyok = 0;                                                              // reset variable for next clicks
+
+                    // keep in a loop cicle until key is not released
+                    PORTD = PORTD | 0x0F;
+                    while ((PORTD & 0x0F) != 0x0F)
+                    {
+                        PORTD = PORTD | 0x0F;
+                        continue;
+                    }
+
+                    return tmp;
+                    //__delay_ms(200);                                                      // DO NOT USE: delay that seems to establish keypad click
+                }    
+            }
+}
+ 
+/*
+char keyPressed()
+{
+    // if "#" button has been pressed
+            //------------- keypad ---------------
+            for (colScan = 0; colScan < 3; colScan++)
+            {
+                // code that controls PORTD
+                PORTB = PORTB | 0x07;                                                       // 111 all columns to 1
+                PORTB = PORTB & colMask[colScan];                                           // set current column to zero to select it
+
+                for (rowScan = 0; rowScan < 4; rowScan++)                                   // scan one row at a time and
+                {
+                    if (!(PORTD & rowMask[rowScan]))                                        // if "0", button has been pressed
+                    {
+                        __delay_ms(5);
+
+                        if (!(PORTD & rowMask[rowScan]))
+                        {
+                            // evaluate which button has been pressed
+                            keypressed = rowScan + (4 * colScan);                           // expression to calculate which one of the button has been pressed
+                            keyok = 1;                                                      // button has been pressed (logical state)
+                        }
+                    }
+                }
+
+                if (keyok)                                                                  // if any key of keypad has been pressed
+                {
+                    // GESTIRE LA PRESSIONE DEL PULSANTE: se l'utente tiene premuto un pulsante della keyboard in ogni caso deve essere rilevato solo una pressione
+                    if(keypressed == )                                                     // if '#' key has been pressed
+                    {
+                        // generate random code (5 numbers)
+                        lcd_send(L_CLR, COMMAND);                                           // clear display
+
+                        char* code = random_string();                                       // generate a new random code
+                        
+                        lcd_str(code);                                                      // print it into display
+
+                        // send code to the gateway (Raspberry Pi) if master select this PIC
+                        UART_TxString(code);
+                        // se arriva qualcosa via seriale verifico se l'indirizzo selezionato è il
+                        // mio, altrimenti non prendo in considerazione il messaggio
+                        code_generate_send = 1;                                             // logical state that indicate the code has been send
+                    }
+
+                    // test for debug
+                    if (keypressed == 7)
+                    {
+                        lcd_send(L_CLR, COMMAND);
+                        lcd_str("28753");
+                        UART_TxString("28753\r\n");
+                    }
+
+                    keyok = 0;                                                              // reset variable for next clicks
+
+                    // keep in a loop cicle until key is not released
+                    PORTD = PORTD | 0x0F;
+                    while ((PORTD & 0x0F) != 0x0F)
+                    {
+                        PORTD = PORTD | 0x0F;
+                        continue;
+                    }
+
+                    //__delay_ms(200);                                                      // DO NOT USE: delay that seems to establish keypad click
+                }    
+}
+*/
 
 /* --------------  INTERRUPT MANAGEMENT --------------- */
 
