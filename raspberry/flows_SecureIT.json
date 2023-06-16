@@ -1,0 +1,546 @@
+[
+    {
+        "id": "0385441cac75f0e1",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2a11b8b4060a0c60",
+        "type": "mqtt in",
+        "z": "0385441cac75f0e1",
+        "name": "",
+        "topic": "/its_test",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "d843ed3c829c7ea3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "e2ef4d49248b4cb2",
+                "a2a9fefba0701004"
+            ]
+        ]
+    },
+    {
+        "id": "e2ef4d49248b4cb2",
+        "type": "debug",
+        "z": "0385441cac75f0e1",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1b32040c0c922320",
+        "type": "ui_gauge",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "name": "",
+        "group": "2179fa2afc3fabd2",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 310,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "f7cde7e709165966",
+        "type": "ui_text",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "group": "8678205c412cabc8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Codice PIC",
+        "format": "{{msg.payload.codepic}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 330,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "9317cafcb11d23da",
+        "type": "ui_button",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "name": "",
+        "group": "8678205c412cabc8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Genera il codice",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 340,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0b1f7dfd72d1c534",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "name": "save to buffer",
+        "func": "//let values = flow.get(\"buffer\") || []; // Prende il valore della variabile\n//values.push(msg.payload);\n//flow.set(\"buffer\", values); // Creata la variabile e inizializzata\n//return msg;\n\nflow.set(\"buffer\", msg.payload.codepic); // Creata la variabile e inizializzata\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03dc275b2e709551",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "name": "code generator",
+        "func": "var codegen = \"\";\nvar caratteri = \"0123456789\";\nvar lunghezzaCodice = 5;\n\nfor (var i = 0; i < lunghezzaCodice; i++) {\n    var indiceCasuale = Math.floor(Math.random() * caratteri.length);\n    codegen += caratteri.charAt(indiceCasuale);\n}\n\nmsg.payload = JSON.parse('{\"codegen\": \"' + codegen + '\"}');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "b8f13da173b770de"
+            ]
+        ]
+    },
+    {
+        "id": "b8f13da173b770de",
+        "type": "debug",
+        "z": "0385441cac75f0e1",
+        "d": true,
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "d9dbc6b460affa82",
+        "type": "ui_text",
+        "z": "0385441cac75f0e1",
+        "group": "8678205c412cabc8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "CodeGenerator",
+        "label": "Codice generato:",
+        "format": "{{msg.payload.codegen}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 660,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "723c996b4756fc9f",
+        "type": "mqtt out",
+        "z": "0385441cac75f0e1",
+        "name": "",
+        "topic": "/its_out",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d843ed3c829c7ea3",
+        "x": 640,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a7535b4455a8f787",
+        "type": "ui_text_input",
+        "z": "0385441cac75f0e1",
+        "name": "CodePic",
+        "label": "Inserire codice del PIC per sbloccare la porta",
+        "tooltip": "",
+        "group": "8678205c412cabc8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "d7e69c0d44309c96",
+                "9111ef4d88456d83"
+            ]
+        ],
+        "info": "Inserire codice del PIC per sbloccare la porta"
+    },
+    {
+        "id": "9111ef4d88456d83",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "name": "strigCompare",
+        "func": "let code = flow.get('codepic'); // Acquisizione variabile globale\nlet input = msg.payload;\n//node.warn(code + \" \" + input);\n//let codepicStr = code.codepic; \n\nif (input == code) {\n    //msg.payload = input;\n    //node.warn(\"Le stringhe sono uguali\");\n    var codegen = \"\";\n    var caratteri = \"0123456789\";\n    var lunghezzaCodice = 5;\n    flow.set(\"timer\", true);\n\n    for (var i = 0; i < lunghezzaCodice; i++) {\n        var indiceCasuale = Math.floor(Math.random() * caratteri.length);\n        codegen += caratteri.charAt(indiceCasuale);\n    }\n\n    msg.payload = JSON.parse('{\"codegen\": \"' + codegen + '\"}');\n\n} else {\n    //node.warn(\"Le stringhe sono diverse\");\n    msg.payload =\"\";\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "e8e64b51922d593f",
+                "d9dbc6b460affa82",
+                "723c996b4756fc9f",
+                "289fa4a38ba3921a",
+                "fb62dc27f082aa12"
+            ]
+        ]
+    },
+    {
+        "id": "e8e64b51922d593f",
+        "type": "debug",
+        "z": "0385441cac75f0e1",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a2a9fefba0701004",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "name": "global_var",
+        "func": "var codepic;\nflow.set('codepic', msg.payload.codepic)\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7e69c0d44309c96",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "name": "blank",
+        "func": "msg.payload = \"\"; // Assegna una stringa vuota alla payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "a7535b4455a8f787"
+            ]
+        ]
+    },
+    {
+        "id": "289fa4a38ba3921a",
+        "type": "delay",
+        "z": "0385441cac75f0e1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "91334b83df8d7be8"
+            ]
+        ]
+    },
+    {
+        "id": "91334b83df8d7be8",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "name": "blank",
+        "func": "msg.payload = \"\"; // Assegna una stringa vuota alla payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "d9dbc6b460affa82"
+            ]
+        ]
+    },
+    {
+        "id": "102de84f427c03b1",
+        "type": "ui_gauge",
+        "z": "0385441cac75f0e1",
+        "name": "Timer",
+        "group": "7fc33cc26790c526",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "",
+        "label": "sec",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 890,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9361ea5f2c5c5d54",
+        "type": "function",
+        "z": "0385441cac75f0e1",
+        "name": "timer",
+        "func": "let countdown = 60;\nlet loop = setInterval(contatore, 1000);\nfunction contatore() {\n    msg.payload = countdown;\n    node.send(msg);\n    countdown--;\n    if (countdown == 0)\n        clearInterval(loop);\n}\n\nflow.set(\"timer\", false); // Reimpostata a false",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "5d1f2e08a9d05880",
+                "102de84f427c03b1"
+            ]
+        ]
+    },
+    {
+        "id": "5d1f2e08a9d05880",
+        "type": "debug",
+        "z": "0385441cac75f0e1",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fb62dc27f082aa12",
+        "type": "switch",
+        "z": "0385441cac75f0e1",
+        "name": "",
+        "property": "timer",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 140,
+        "wires": [
+            [
+                "9361ea5f2c5c5d54"
+            ]
+        ]
+    },
+    {
+        "id": "b06b5eec222a7d9d",
+        "type": "ui_spacer",
+        "z": "0385441cac75f0e1",
+        "name": "spacer",
+        "group": "8678205c412cabc8",
+        "order": 4,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "de6643cda17acd44",
+        "type": "ui_spacer",
+        "z": "0385441cac75f0e1",
+        "name": "spacer",
+        "group": "7fc33cc26790c526",
+        "order": 1,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d843ed3c829c7ea3",
+        "type": "mqtt-broker",
+        "name": "raspberry",
+        "broker": "192.168.0.222",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2179fa2afc3fabd2",
+        "type": "ui_group",
+        "name": "Home",
+        "tab": "735987f5285df914",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8678205c412cabc8",
+        "type": "ui_group",
+        "name": "Codice PIC",
+        "tab": "59a70122a65680b7",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7fc33cc26790c526",
+        "type": "ui_group",
+        "name": "Tempo residuo",
+        "tab": "59a70122a65680b7",
+        "order": 2,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "735987f5285df914",
+        "type": "ui_tab",
+        "d": true,
+        "name": "Monitor",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "59a70122a65680b7",
+        "type": "ui_tab",
+        "name": "Campus universitario ITS",
+        "icon": "school",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
