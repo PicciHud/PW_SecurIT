@@ -7,9 +7,14 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<!-- Solo gli amministratori possono creare una stanza nuova -->
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-page="Create">Create new room</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
