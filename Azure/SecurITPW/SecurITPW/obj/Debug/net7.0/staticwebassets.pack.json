@@ -13,8 +13,40 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\img\\Building.jpg",
+      "PackagePath": "staticwebassets\\img\\Building.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\img\\Building2.jpg",
+      "PackagePath": "staticwebassets\\img\\Building2.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\img\\Degree.jpg",
+      "PackagePath": "staticwebassets\\img\\Degree.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\img\\Rooms.jpg",
+      "PackagePath": "staticwebassets\\img\\Rooms.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\img\\TheUniversityOf.jpg",
+      "PackagePath": "staticwebassets\\img\\TheUniversityOf.jpg"
+    },
+    {
       "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\Degree.jpg",
+      "PackagePath": "staticwebassets\\lib\\Degree.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\Rooms.jpg",
+      "PackagePath": "staticwebassets\\lib\\Rooms.jpg"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\TheUniversityOf.jpg",
+      "PackagePath": "staticwebassets\\lib\\TheUniversityOf.jpg"
     },
     {
       "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\bootstrap\\LICENSE",
@@ -195,6 +227,10 @@
     {
       "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\building.jpg",
+      "PackagePath": "staticwebassets\\lib\\building.jpg"
     },
     {
       "Id": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
