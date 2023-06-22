@@ -1,5 +1,5 @@
 ﻿@page
-@model SecurITPW.Pages.Codes.NomePaginaModel
+@model SecurITPW.Pages.Codes.IndexModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,27 +15,25 @@
 <h1>Accesso stanza</h1>
 
 <div class="text-center">
-    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
-    {
-        <p>@TempData["Message"]</p>
-    }
-
     <form method="post">
         <div class="form-group">
             <label for="codeInput">Codice PIC:</label>
             <input type="text" id="codeInput" name="Code" class="form-control custom-input" />
-            <!-- Aggiungiamo la classe CSS "custom-input" alla casella di testo -->
         </div>
         <p></p>
         <button type="submit" class="btn btn-primary">Invia</button>
     </form>
 
-    @if (!string.IsNullOrEmpty(Model.SecondCode))
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <p>@TempData["Message"]</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NewCode))
     {
         <div class="mt-3">
             <label for="secondCodeInput">Codice da inserire:</label>
-            <input type="text" id="secondCodeInput" class="form-control custom-input" value="@Model.SecondCode" readonly />
-            <!-- Anche per il secondo codice, applichiamo la classe CSS "custom-input" -->
+            <input type="text" id="secondCodeInput" class="form-control custom-input" value="@Model.NewCode" readonly />
         </div>
     }
 </div>

@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
+    "C:\\Users\\bonal\\Desktop\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
   },
   "projects": {
-    "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
+    "C:\\Users\\bonal\\Desktop\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectUniqueName": "C:\\Users\\bonal\\Desktop\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "projectName": "SecurITPW",
-        "projectPath": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+        "projectPath": "C:\\Users\\bonal\\Desktop\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bonal\\Desktop\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,6 +70,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.7, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
