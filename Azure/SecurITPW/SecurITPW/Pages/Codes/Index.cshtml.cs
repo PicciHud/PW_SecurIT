@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SecurITPW.Pages.Codes
 {
+    [Authorize] // Aggiungiamo l'attributo Authorize per richiedere l'autenticazione
+
     public class NomePaginaModel : PageModel
     {
         [BindProperty]
