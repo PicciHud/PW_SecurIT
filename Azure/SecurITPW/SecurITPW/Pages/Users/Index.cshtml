@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Utenti</h1>
 
 <!-- Solo gli amministratori possono creare una stanza nuova -->
 @if (User.IsInRole("Admin"))
@@ -42,11 +42,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SurName)
             </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <!-- Solo gli amministratori possono creare una stanza nuova -->
+            @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            }
         </tr>
 }
     </tbody>
