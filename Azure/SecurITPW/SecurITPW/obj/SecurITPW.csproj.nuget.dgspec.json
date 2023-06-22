@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
+    "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
   },
   "projects": {
-    "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
+    "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectUniqueName": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "projectName": "SecurITPW",
-        "projectPath": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectPath": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+        "outputPath": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -27,7 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.User[0].SurName)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Email)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,11 +44,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SurName)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
             <!-- Solo gli amministratori possono creare una stanza nuova -->
             @if (User.IsInRole("Admin"))
-                {
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+            {
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                 </td>

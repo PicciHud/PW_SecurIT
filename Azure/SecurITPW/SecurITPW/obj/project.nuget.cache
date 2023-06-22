@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZqCQ+eY/XeJk4T8fmP3nInsq3iwg62CB0gfOBZvYFCvwxTALXvdi8ZbupixBXSKjz7+ebzq11vhHFIy/V1qu+w==",
+  "dgSpecHash": "4Ibl82uaCRa7REPsiOY0pKwP7H7k2ZG5eko1f5WlT3ynNHPCoCt8iP0pKb02aRVvwK5sAfRddf4fbq5IQyCKoA==",
   "success": true,
-  "projectFilePath": "D:\\PW\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+  "projectFilePath": "D:\\PW 2\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

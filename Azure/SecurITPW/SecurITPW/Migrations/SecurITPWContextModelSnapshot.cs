@@ -83,6 +83,9 @@ namespace SecurITPW.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
