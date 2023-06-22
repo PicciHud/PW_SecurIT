@@ -1,0 +1,48 @@
+﻿@page
+@model SecurITPW.Pages.Accounts.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    .custom-input {
+        width: 200px; /* Imposta la larghezza desiderata */
+        margin-left: auto; /* Imposta distanza dal bordo sinistro (perchè "text-center" non c'entra anche le caselle di testo e non sapevo come altro allinearle*/
+        margin-right: auto; /* Imposta distanza dal bordo destro (perchè "text-center" non c'entra anche le caselle di testo e non sapevo come altro allinearle*/
+    }
+</style>
+
+<h1>Registrazione</h1>
+<h4>Crea il tuo account</h4>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+<div class="text-center">
+    <form method="post">
+        <div class="form-group">
+            <input type="text" class="form-control custom-input" id="name" name="Name" placeholder="Nome" required>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <input type="text" class="form-control custom-input" id="surname" name="Surname" placeholder="Cognome" required>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <input type="email" class="form-control custom-input" id="email" name="Email" placeholder="Email" required>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <input type="password" class="form-control custom-input" id="password" name="Password" placeholder="Password" required>
+        </div>
+        <p></p>
+        <div class="form-group">
+            <input type="password" class="form-control custom-input" id="confirm-password" name="Confirm-password" placeholder="Confirm password" required>
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+

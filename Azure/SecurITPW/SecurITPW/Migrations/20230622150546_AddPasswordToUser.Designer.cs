@@ -12,8 +12,8 @@ using SecurITPW.Data;
 namespace SecurITPW.Migrations
 {
     [DbContext(typeof(SecurITPWContext))]
-    [Migration("20230622132236_AddEmailToUser")]
-    partial class AddEmailToUser
+    [Migration("20230622150546_AddPasswordToUser")]
+    partial class AddPasswordToUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,12 +87,17 @@ namespace SecurITPW.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SurName")
