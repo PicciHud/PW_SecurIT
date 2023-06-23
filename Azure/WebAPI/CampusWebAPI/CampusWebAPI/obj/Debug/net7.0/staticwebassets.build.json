@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "MHMTD1fEGoKqwAE39ghYllLvKwVUG0hFDpHiSzQgR9Q=",
+  "Source": "CampusWebAPI",
+  "BasePath": "_content/CampusWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
