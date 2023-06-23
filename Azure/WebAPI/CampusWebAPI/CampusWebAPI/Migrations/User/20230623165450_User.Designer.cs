@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CampusWebAPI.Migrations.House
+namespace CampusWebAPI.Migrations.User
 {
-    [DbContext(typeof(HouseContext))]
-    [Migration("20230623144909_House")]
-    partial class House
+    [DbContext(typeof(UserContext))]
+    [Migration("20230623165450_User")]
+    partial class User
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace CampusWebAPI.Migrations.House
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CampusWebAPI.Models.House", b =>
+            modelBuilder.Entity("CampusWebAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,15 +32,26 @@ namespace CampusWebAPI.Migrations.House
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("IdHouse")
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdUser")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdRoom")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SurName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("House");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

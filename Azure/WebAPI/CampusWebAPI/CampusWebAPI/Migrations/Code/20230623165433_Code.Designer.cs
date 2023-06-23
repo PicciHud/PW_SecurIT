@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CampusWebAPI.Migrations
+namespace CampusWebAPI.Migrations.Code
 {
-    [DbContext(typeof(AccessContext))]
-    [Migration("20230623144852_Access")]
-    partial class Access
+    [DbContext(typeof(CodeContext))]
+    [Migration("20230623165433_Code")]
+    partial class Code
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,13 +25,19 @@ namespace CampusWebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CampusWebAPI.Models.Access", b =>
+            modelBuilder.Entity("CampusWebAPI.Models.Code", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodeCloud")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodePic")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdHouse")
                         .HasColumnType("int");
@@ -56,7 +62,7 @@ namespace CampusWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Access");
+                    b.ToTable("Code");
                 });
 #pragma warning restore 612, 618
         }
