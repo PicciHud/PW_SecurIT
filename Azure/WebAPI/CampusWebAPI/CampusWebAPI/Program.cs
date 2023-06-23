@@ -14,8 +14,6 @@ namespace CampusWebAPI
             // Add services to the container.
             builder.Services.AddDbContext<AccessContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("CampusContext")));
-            builder.Services.AddDbContext<CodeContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("CampusContext")));
             builder.Services.AddDbContext<HouseContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("CampusContext")));
             builder.Services.AddDbContext<UserContext>(options =>
