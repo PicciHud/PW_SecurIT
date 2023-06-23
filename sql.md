@@ -63,22 +63,36 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 ## Progettazione e struttura del Database
 
 **Access**
-- idPic (int32)
-- idUser (int32)
-- idHome (int32)
-- idRoom (int32)
+
+```sql
+        public required int Id { get; set; }
+        public string? CodePic { get; set; }
+        public string? CodeCloud { get; set; }
+        public required int IdPic { get; set; }
+        public required int IdUser { get; set; }
+        public string? Name { get; set; }
+        public string? SurName { get; set; }
+        public required int IdHouse { get; set; }
+        public required int IdRoom { get; set; }
+        public DateTime Time { get; set; }
+```
 
 **User**
-- idUser (int32)
-- name (string)
-- surname (string)
-- email (string)
-- password (string)
-- admin (boolean)
+```sql
+        public required int Id { get; set; }             
+        public required int IdUser { get; set; }             
+        public string? Name { get; set; }
+        public string? SurName { get; set; }
+        public required string Email { get; set; }
+        public required string Password { get; set; }
+```
 
-**Home**
-- idHome (int32)
-- idRoom (int32)
+**House**
+```sql
+        public required int Id { get; set; } 
+        public required int IdHouse { get; set; }
+        public required int IdRoom { get; set; }
+```
 
 ![azure_table](./asset/azure_table.png)
 ## Connessione ad Database da Visual Studio
