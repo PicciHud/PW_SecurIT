@@ -3,6 +3,8 @@
     public class Access
     {
         public required int Id { get; set; }                 // Primary key
+        public string? CodePic { get; set; }
+        public string? CodeCloud { get; set; }
         public required int IdPic { get; set; }
         public required int IdUser { get; set; }
         public string? Name { get; set; }

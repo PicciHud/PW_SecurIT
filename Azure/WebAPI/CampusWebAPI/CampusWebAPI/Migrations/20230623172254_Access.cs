@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CampusWebAPI.Migrations.Code
+namespace CampusWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Code : Migration
+    public partial class Access : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Code",
+                name: "Access",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,7 +29,7 @@ namespace CampusWebAPI.Migrations.Code
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Code", x => x.Id);
+                    table.PrimaryKey("PK_Access", x => x.Id);
                 });
         }
 
@@ -37,7 +37,7 @@ namespace CampusWebAPI.Migrations.Code
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Code");
+                name: "Access");
         }
     }
 }
