@@ -1,4 +1,4 @@
-﻿namespace SecurITPW.Models
+﻿namespace CampusWebAPI.Models
 {
     public class Code
     {
