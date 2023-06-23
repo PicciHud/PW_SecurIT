@@ -60,7 +60,7 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 
 ![tabelle](./asset/db.png)
 
-## Progettazione del Database
+## Progettazione e struttura del Database
 
 **Access**
 - idPic (int32)
@@ -68,7 +68,7 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 - idHome (int32)
 - idRoom (int32)
 
-**Users**
+**User**
 - idUser (int32)
 - name (string)
 - surname (string)
@@ -76,7 +76,7 @@ Per connettersi tramite **VSCode** seguire [questa guida](https://learn.microsof
 - password (string)
 - admin (boolean)
 
-**Rooms**
+**Home**
 - idHome (int32)
 - idRoom (int32)
 
