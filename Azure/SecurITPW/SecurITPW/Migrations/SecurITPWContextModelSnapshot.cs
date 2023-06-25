@@ -30,6 +30,12 @@ namespace SecurITPW.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CodeCloud")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodePic")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IdHouse")
                         .HasColumnType("int");
 

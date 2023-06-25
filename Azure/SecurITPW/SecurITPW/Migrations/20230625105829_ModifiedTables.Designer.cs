@@ -12,8 +12,8 @@ using SecurITPW.Data;
 namespace SecurITPW.Migrations
 {
     [DbContext(typeof(SecurITPWContext))]
-    [Migration("20230622150546_AddPasswordToUser")]
-    partial class AddPasswordToUser
+    [Migration("20230625105829_ModifiedTables")]
+    partial class ModifiedTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,12 @@ namespace SecurITPW.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodeCloud")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodePic")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdHouse")
                         .HasColumnType("int");

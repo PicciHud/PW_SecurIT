@@ -2,12 +2,12 @@
 {
     public class User
     {
-        public int Id { get; set; }                 // Primary key
-        public int IdUser { get; set; }
+        public required int Id { get; set; }                 // Primary key
+        public required int IdUser { get; set; }
         public string? Name { get; set; }
         public string? SurName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public required string Email { get; set; }
+        public required string Password { get; set; }
 
         // public ICollection<Access> Accesses { get; set; }
 
