@@ -38,7 +38,7 @@ namespace SecurITPW.Pages.Codes
         public IActionResult OnPost()
         {
             // Esegui le operazioni necessarie per il codice inviato
-            if (!Code.IsNullOrEmpty())
+            if (!Code.IsNullOrEmpty() && Code.Length == 5)
             {
                 if (!ModelState.IsValid)
                 {
@@ -97,7 +97,7 @@ namespace SecurITPW.Pages.Codes
             {
                 connection.Open();
                 //cambiare nome tabella "YourTable" con il nome della tabella a db che contiene il codice
-                SqlCommand command = new SqlCommand("INSERT INTO YourTable (Code) VALUES (@Code)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO Codes (codeFromPIC) VALUES (@Code)", connection);
                 command.Parameters.AddWithValue("@Code", code);
                 command.ExecuteNonQuery();
             }
@@ -110,7 +110,7 @@ namespace SecurITPW.Pages.Codes
             {
                 connection.Open();
                 //cambiare nome tabella "YourTable" con il nome della tabella a db che contiene il codice
-                SqlCommand command = new SqlCommand("SELECT TOP 1 Code FROM YourTable ORDER BY Id DESC", connection);
+                SqlCommand command = new SqlCommand("SELECT TOP 1 codeFromWeb FROM Codes ORDER BY Id DESC", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {

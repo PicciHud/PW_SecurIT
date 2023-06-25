@@ -52,6 +52,10 @@ namespace CampusWebAPI
 
 // Creazione API
 
+// prima crea la classe che ti serve dentro Models e il suo Context e aggiungi, nella parte superiore di questa pagina di codice
+//            builder.Services.AddDbContext<QUELLOCHETISERVEContext>(options =>
+//              options.UseSqlServer(builder.Configuration.GetConnectionString("CampusContext")));
+
 //Fare clic con il pulsante destro del mouse sulla cartella Controllers.
 
 //    Selezionare Aggiungi>nuovo elemento con scaffolding.
