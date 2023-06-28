@@ -11,7 +11,8 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Collections.Generic;
 using SecurITPW.Models;
-
+using System.Security.Permissions;
+using System.Text;
 
 namespace SecurITPW.Pages.Codes
 {
@@ -34,7 +35,8 @@ namespace SecurITPW.Pages.Codes
         }
 
         [BindProperty]
-        public string Code { get; set; }
+        public string codeForWeb { get; set; }
+        public string codeForPIC { get; set; }
         public string NewCode { get; set; }
 
         public void OnGet()
@@ -45,8 +47,10 @@ namespace SecurITPW.Pages.Codes
 
         public IActionResult OnPost()
         {
+            var codicePic = "";
+            var codiceCloud = "";
             // Esegui le operazioni necessarie per il codice inviato
-            if (!Code.IsNullOrEmpty() && Code.Length == 5)
+            if (!codeForWeb.IsNullOrEmpty() && codeForWeb.Length == 5)
             {
 
                 if (!ModelState.IsValid)
@@ -57,29 +61,35 @@ namespace SecurITPW.Pages.Codes
                 TempData["Message"] = "Codice inviato!";
 
                 // Prendi codice da DB
-
+                TakeCodeToConfront(codicePic);
                 // Verifica che il codice sia uguale a quello inserito
-
-                // Se uguale crea nuovo codice
-                bool isCodeMatching = false;
-
-                if (isCodeMatching == false)
+                var equal = ConfrontCodes(codicePic, codeForWeb);
+                if (equal == false)
                 {
-                    // Il codice inserito corrisponde a un altro codice nel database
                     TempData["Message"] = "CODICE ERRATO";
                 }
 
-                // Invia il nuovo codice a DB
+                // Se uguale 
+                if (equal == true)
+                {
+                    //crea nuovo codice
+                    codeForPIC = CreateNewCode();
 
-                // Prendi altro codice da DB(quello che arriva dal PIC, che ha inserito l'utente
+                    // Invia il nuovo codice a DB
 
-                // Verifica che il codice preso da DB sia uguale a quello nuovo inviato appena prima
+                    // Prendi altro codice da DB(quello che arriva dal PIC, che ha inserito l'utente)
 
-                // Se uguale ritorna valore che apre la porta
+
+                    // Verifica che il codice preso da DB sia uguale a quello nuovo inviato appena prima
+
+
+                    // Se uguale ritorna valore che apre la porta
+                }
 
                 return Page();
             }
-            if (Code.IsNullOrEmpty() || Code.Length < 5)
+
+            if (codeForWeb.IsNullOrEmpty() || codeForWeb.Length < 5)
             {
                 // Imposta il messaggio di avviso che il codice non è stato inviato
                 TempData["Message"] = "Codice errato: troppo corto";
@@ -89,7 +99,7 @@ namespace SecurITPW.Pages.Codes
             return RedirectToPage();
         }
 
-        public async void callForAPI()
+        public async void TakeCodeToConfront(string codicePic)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -103,11 +113,12 @@ namespace SecurITPW.Pages.Codes
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // Utilizza i dati ottenuti dall'API come desiderato
+
+                // DA SISTEMARE IL CONTROLLO NEL DB
                 foreach (var code in codes)
                 {
                     // Visualizza i dettagli del prodotto
-                    var codicePic = code.CodePic;
-                    var codiceCloud =code.CodeCloud;
+                    codicePic = code.CodePic;
                 }
             }
             else
@@ -116,5 +127,61 @@ namespace SecurITPW.Pages.Codes
                 TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
             }
         }
+
+        public bool ConfrontCodes(string codicePic, string codeForWeb)
+        {
+            return codicePic.Equals(codeForWeb);
+        }
+
+        public string CreateNewCode()
+        {
+
+            string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+
+            StringBuilder stringBuilder = new StringBuilder(5);
+
+            for (int i = 0; i < 5; i++)
+            {
+                 int index = random.Next(Characters.Length);
+                 char randomChar = Characters[index];
+                 stringBuilder.Append(randomChar);
+            }
+            
+            return stringBuilder.ToString();
+        }
     }
 }
+
+
+
+
+
+//CODICE PER USARE UN'API
+//public async void callForAPI()
+//{
+//    // Crea un'istanza di HttpClient
+//    var httpClient = new HttpClient();
+
+//    // Effettua la chiamata all'API
+//    var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+
+//    if (response.IsSuccessStatusCode)
+//    {
+//        // Deserializza la risposta in una lista di oggetti Product
+//        var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+//        // Utilizza i dati ottenuti dall'API come desiderato
+//        foreach (var code in codes)
+//        {
+//            // Visualizza i dettagli del prodotto
+//            var codicePic = code.CodePic;
+//            var codiceCloud =code.CodeCloud;
+//        }
+//    }
+//    else
+//    {
+//        // Gestisci eventuali errori
+//        TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+//    }
+//}

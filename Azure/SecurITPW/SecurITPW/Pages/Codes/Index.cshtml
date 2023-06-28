@@ -1,5 +1,8 @@
 ﻿@page
 @model SecurITPW.Pages.Codes.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
 
 <style>
     .custom-input {
@@ -9,19 +12,13 @@
     }
 </style>
 
-@{
-    ViewData["Title"] = "Index";
-
-
-}
-
 <h1>Accesso stanza</h1>
 
 <div class="text-center">
     <form method="post">
         <div class="form-group">
             <label for="codeInput">Codice PIC:</label>
-            <input type="text" id="codeInput" name="Code" class="form-control custom-input" maxlength="5" />
+            <input type="text" id="codeInput" name="codeForWeb" class="form-control custom-input" maxlength="5" />
         </div>
         <p></p>
         <button type="submit" class="btn btn-primary">Invia</button>
@@ -34,6 +31,6 @@
 
      <div class="mt-3">
          <label for="secondCodeInput">Codice da inserire:</label>
-         <input type="text" id="secondCodeInput" class="form-control custom-input" value="@Model.NewCode" readonly />
+        <input type="text" id="secondCodeInput" name="codeForPIC" class="form-control custom-input" value="@Model.codeForPIC" readonly />
      </div>
 </div>
