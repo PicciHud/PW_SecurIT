@@ -759,3 +759,4 @@ C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWeb
 C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWebAPI\obj\Debug\net7.0\CampusWebAPI.pdb
 C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWebAPI\obj\Debug\net7.0\CampusWebAPI.genruntimeconfig.cache
 C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWebAPI\obj\Debug\net7.0\ref\CampusWebAPI.dll
+C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWebAPI\bin\Debug\net7.0\appsettings.json

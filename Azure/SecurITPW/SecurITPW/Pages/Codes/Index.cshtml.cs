@@ -4,6 +4,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.SqlClient; //bisogna anche installare System.Data.SqlClient dalla gestione pacchetti nuget
 using System.Dynamic;
+using System.Net.NetworkInformation;
+//PER USARE LE API
+// Includi i namespace necessari
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Collections.Generic;
+using SecurITPW.Models;
+
 
 namespace SecurITPW.Pages.Codes
 {
@@ -46,12 +54,28 @@ namespace SecurITPW.Pages.Codes
                     return Page();
                 }
 
-                // Salva il codice nel database
-
-                // Ottieni il nuovo codice dal database
-
-                // Imposta il messaggio di conferma
                 TempData["Message"] = "Codice inviato!";
+
+                // Prendi codice da DB
+
+                // Verifica che il codice sia uguale a quello inserito
+
+                // Se uguale crea nuovo codice
+                bool isCodeMatching = false;
+
+                if (isCodeMatching == false)
+                {
+                    // Il codice inserito corrisponde a un altro codice nel database
+                    TempData["Message"] = "CODICE ERRATO";
+                }
+
+                // Invia il nuovo codice a DB
+
+                // Prendi altro codice da DB(quello che arriva dal PIC, che ha inserito l'utente
+
+                // Verifica che il codice preso da DB sia uguale a quello nuovo inviato appena prima
+
+                // Se uguale ritorna valore che apre la porta
 
                 return Page();
             }
@@ -65,30 +89,32 @@ namespace SecurITPW.Pages.Codes
             return RedirectToPage();
         }
 
-        public IActionResult OnPostCheckCode(string codeToCheck)
+        public async void callForAPI()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            // Crea un'istanza di HttpClient
+            var httpClient = new HttpClient();
 
-            // Controlla se il codice inserito corrisponde a un altro codice nel database
-            bool isCodeMatching = false;
+            // Effettua la chiamata all'API
+            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
 
-            // Esegui l'azione appropriata in base al risultato del controllo
-            if (isCodeMatching)
+            if (response.IsSuccessStatusCode)
             {
-                // Il codice inserito corrisponde a un altro codice nel database
-                TempData["Message"] = "CODICE ERRATO";
+                // Deserializza la risposta in una lista di oggetti Product
+                var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+                // Utilizza i dati ottenuti dall'API come desiderato
+                foreach (var code in codes)
+                {
+                    // Visualizza i dettagli del prodotto
+                    var codicePic = code.CodePic;
+                    var codiceCloud =code.CodeCloud;
+                }
             }
             else
             {
-                // Il codice inserito non corrisponde a nessun altro codice nel database
-                TempData["Message"] = "CODICE INESISTENTE";
+                // Gestisci eventuali errori
+                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
             }
-
-            return Page();
         }
-
     }
 }
