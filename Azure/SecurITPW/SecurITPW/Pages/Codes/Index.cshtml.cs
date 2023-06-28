@@ -144,11 +144,15 @@ namespace SecurITPW.Pages.Codes
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // Utilizza i dati ottenuti dall'API come desiderato
-                // DA SISTEMARE IL CONTROLLO NEL DB
+                // DA SISTEMARE IL CONTROLLO NEL DB??
                 foreach (var code in codes)
                 {
                     if (codicePic == code.CodePic)
                     {
+                        if(code.CodeCloud == null)
+                        {
+                            TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
+                        }
                         codiceCloud = code.CodeCloud;
                     }
                 }
