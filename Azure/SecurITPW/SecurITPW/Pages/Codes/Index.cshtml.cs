@@ -73,7 +73,7 @@ namespace SecurITPW.Pages.Codes
                     codeForPIC = CreateNewCode();
 
                     // Prendi il codiche che il PIC manda al DB
-                    TakeCodeFromDBForPIC(codiceCloud);
+                    TakeCodeFromDBForPIC(codiceCloud, codicePic);
 
                     // Verifica che il codice preso da DB sia uguale a quello nuovo creato appena prima
                     equal2 = ConfrontCodes(codiceCloud, codeForPIC);
@@ -116,7 +116,7 @@ namespace SecurITPW.Pages.Codes
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // Utilizza i dati ottenuti dall'API come desiderato
-                // DA SISTEMARE IL CONTROLLO NEL DB
+                // DA SISTEMARE IL CONTROLLO NEL DB, prendere l'ultimo codice
                 foreach (var code in codes)
                 {
                     // Visualizza i dettagli del prodotto
@@ -130,7 +130,7 @@ namespace SecurITPW.Pages.Codes
             }
         }
 
-        public async void TakeCodeFromDBForPIC(string codiceCloud)
+        public async void TakeCodeFromDBForPIC(string codiceCloud, string codicePic)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -147,8 +147,10 @@ namespace SecurITPW.Pages.Codes
                 // DA SISTEMARE IL CONTROLLO NEL DB
                 foreach (var code in codes)
                 {
-                    // Visualizza i dettagli del prodotto
-                    codiceCloud = code.CodeCloud;
+                    if (codicePic == code.CodePic)
+                    {
+                        codiceCloud = code.CodeCloud;
+                    }
                 }
             }
             else
