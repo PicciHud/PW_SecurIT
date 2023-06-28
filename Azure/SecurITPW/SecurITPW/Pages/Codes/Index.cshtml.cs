@@ -40,26 +40,25 @@ namespace SecurITPW.Pages.Codes
             // Esegui le operazioni necessarie per il codice inviato
             if (!Code.IsNullOrEmpty() && Code.Length == 5)
             {
+
                 if (!ModelState.IsValid)
                 {
                     return Page();
                 }
 
                 // Salva il codice nel database
-                SaveCodeToDatabase(Code);
 
                 // Ottieni il nuovo codice dal database
-                NewCode = GetNewCodeFromDatabase();
 
                 // Imposta il messaggio di conferma
                 TempData["Message"] = "Codice inviato!";
 
                 return Page();
             }
-            if(Code.IsNullOrEmpty())
+            if (Code.IsNullOrEmpty() || Code.Length < 5)
             {
                 // Imposta il messaggio di avviso che il codice non è stato inviato
-                TempData["Message"] = "CODICE MANCANTE";
+                TempData["Message"] = "Codice errato: troppo corto";
             }
 
             // Redirect alla stessa pagina per evitare invii multipli
@@ -74,7 +73,7 @@ namespace SecurITPW.Pages.Codes
             }
 
             // Controlla se il codice inserito corrisponde a un altro codice nel database
-            bool isCodeMatching = CheckCodeWithDatabase(codeToCheck);
+            bool isCodeMatching = false;
 
             // Esegui l'azione appropriata in base al risultato del controllo
             if (isCodeMatching)
@@ -89,53 +88,6 @@ namespace SecurITPW.Pages.Codes
             }
 
             return Page();
-        }
-
-        private void SaveCodeToDatabase(string code)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                //cambiare nome tabella "YourTable" con il nome della tabella a db che contiene il codice
-                SqlCommand command = new SqlCommand("INSERT INTO Codes (codeFromPIC) VALUES (@Code)", connection);
-                command.Parameters.AddWithValue("@Code", code);
-                command.ExecuteNonQuery();
-            }
-        }
-
-        private string GetNewCodeFromDatabase()
-        {
-            string newCode = string.Empty;
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                //cambiare nome tabella "YourTable" con il nome della tabella a db che contiene il codice
-                SqlCommand command = new SqlCommand("SELECT TOP 1 codeFromWeb FROM Codes ORDER BY Id DESC", connection);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    newCode = reader.GetString(0);
-                }
-            }
-            return newCode;
-        }
-
-        private bool CheckCodeWithDatabase(string codeToCheck)
-        {
-            bool isMatching = false;
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                //cambiare nome tabella "YourTable" con il nome della tabella a db che contiene il codice
-                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM YourTable WHERE Code = @Code", connection);
-                command.Parameters.AddWithValue("@Code", codeToCheck);
-                int count = (int)command.ExecuteScalar();
-                if (count > 0)
-                {
-                    isMatching = true;
-                }
-            }
-            return isMatching;
         }
 
     }

@@ -18,7 +18,7 @@
     <form method="post">
         <div class="form-group">
             <label for="codeInput">Codice PIC:</label>
-            <input type="text" id="codeInput" name="Code" class="form-control custom-input" />
+            <input type="text" id="codeInput" name="Code" class="form-control custom-input" maxlength="5" />
         </div>
         <p></p>
         <button type="submit" class="btn btn-primary">Invia</button>
@@ -29,11 +29,8 @@
         <p>@TempData["Message"]</p>
     }
 
-    @if (!string.IsNullOrEmpty(Model.NewCode))
-    {
-        <div class="mt-3">
-            <label for="secondCodeInput">Codice da inserire:</label>
-            <input type="text" id="secondCodeInput" class="form-control custom-input" value="@Model.NewCode" readonly />
-        </div>
-    }
+     <div class="mt-3">
+         <label for="secondCodeInput">Codice da inserire:</label>
+         <input type="text" id="secondCodeInput" class="form-control custom-input" value="@Model.NewCode" readonly />
+     </div>
 </div>

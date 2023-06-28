@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurITPW", "SecurITPW\SecurITPW.csproj", "{96B30B3B-A429-4517-AE83-69984E149484}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampusWebAPI", "..\WebAPI\CampusWebAPI\CampusWebAPI\CampusWebAPI.csproj", "{FAFB307D-1F09-42B9-95E1-EEF7BCCFA446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{96B30B3B-A429-4517-AE83-69984E149484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96B30B3B-A429-4517-AE83-69984E149484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96B30B3B-A429-4517-AE83-69984E149484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAFB307D-1F09-42B9-95E1-EEF7BCCFA446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAFB307D-1F09-42B9-95E1-EEF7BCCFA446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFB307D-1F09-42B9-95E1-EEF7BCCFA446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAFB307D-1F09-42B9-95E1-EEF7BCCFA446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

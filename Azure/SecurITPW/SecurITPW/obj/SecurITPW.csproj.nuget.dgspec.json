@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PW3\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
+    "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
   },
   "projects": {
-    "D:\\PW3\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
+    "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PW3\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "projectName": "SecurITPW",
-        "projectPath": "D:\\PW3\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
-        "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
-        "outputPath": "D:\\PW3\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

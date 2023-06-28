@@ -13,24 +13,6 @@ namespace SecurITPW.Pages.Users
 
             public string ErrorMessage { get; private set; }
 
-            public void OnGet()
-            {
-                // Logic for handling GET request
-            }
-
-            public IActionResult OnPost()
-            {
-                if (Email == "alessandro.bonaldo@stud.itsaltoadriatico.it" && Password == "Poiuytre1!")
-                {
-                    // Successful login logic
-                    return RedirectToPage("/Shared/SecurITPW");
-                }
-                else
-                {
-                    ErrorMessage = "Invalid email or password.";
-                    return Page();
-                }
-            }
         }
 }
 
