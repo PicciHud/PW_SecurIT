@@ -6,6 +6,7 @@
 
 @{
     bool equal2 = true;
+    string messaggio = "";
 }
 
 
@@ -39,8 +40,5 @@
         <input type="text" id="secondCodeInput" name="codeForPIC" class="form-control custom-input" value="@Model.codeForPIC" readonly />
      </div>
 
-    @if (@equal2 == false)
-    {
-        <p>@TempData["Message"]</p>
-    }
+    <p>@messaggio</p>
 </div>

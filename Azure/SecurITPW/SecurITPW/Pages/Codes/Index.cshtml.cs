@@ -7,6 +7,9 @@ using Microsoft.IdentityModel.Tokens;
 // Includi i namespace necessari
 using SecurITPW.Models;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using SecurITPW.Data;
+using Microsoft.CodeAnalysis.Editing;
 
 namespace SecurITPW.Pages.Codes
 {
@@ -42,10 +45,8 @@ namespace SecurITPW.Pages.Codes
             NewCode = " ";
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            var codicePic = "";
-            var codiceCloud = "";
             // Esegui le operazioni necessarie per il codice inviato
             if (!codeForWeb.IsNullOrEmpty() && codeForWeb.Length == 5)
             {
@@ -58,7 +59,7 @@ namespace SecurITPW.Pages.Codes
                 TempData["Message"] = "Codice inviato!";
 
                 // Prendi codice da DB
-                TakeCodeFromDBForWeb(codicePic);
+                var codicePic = await TakeCodeFromDBForWeb();
                 // Verifica che il codice sia uguale a quello inserito
                 var equal1 = ConfrontCodes(codicePic, codeForWeb);
                 if (equal1 == false)
@@ -72,15 +73,15 @@ namespace SecurITPW.Pages.Codes
                     //crea nuovo codice
                     codeForPIC = CreateNewCode();
 
-                    // Prendi il codiche che il PIC manda al DB
-                    TakeCodeFromDBForPIC(codiceCloud, codicePic);
+                    // Prendi il codice che il PIC manda al DB
+                    var codiceCloud = TakeCodeFromDBForPIC(codicePic).ToString();
 
                     // Verifica che il codice preso da DB sia uguale a quello nuovo creato appena prima
                     equal2 = ConfrontCodes(codiceCloud, codeForPIC);
 
                     if (equal2 == false)
                     {
-                        TempData["Message"] = "CODICE INSERITO NEL PIC ERRATO";
+                        var messaggio = "CODICE INSERITO NEL PIC ERRATO";
                     }
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
@@ -102,7 +103,7 @@ namespace SecurITPW.Pages.Codes
             return RedirectToPage();
         }
 
-        public async void TakeCodeFromDBForWeb(string codicePIC)
+        public async Task<string> TakeCodeFromDBForWeb()
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -112,25 +113,28 @@ namespace SecurITPW.Pages.Codes
 
             if (response.IsSuccessStatusCode)
             {
-                // Deserializza la risposta in una lista di oggetti Product
+                // Deserializza la risposta in una lista di oggetti
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
-                // Utilizza i dati ottenuti dall'API come desiderato
-                // DA SISTEMARE IL CONTROLLO NEL DB, prendere l'ultimo codice
-                foreach (var code in codes)
-                {
-                    // Visualizza i dettagli del prodotto
-                    codicePIC = code.CodePic;
-                }
+                // UTILIZZA I DATI OTTENUTI DALL'API COME DESIDERATO
+
+                // Ordina la lista in base alla colonna "codicePic" in ordine decrescente
+                codes = codes.OrderByDescending(d => d.Id).ToList();
+
+                // Prendi il primo elemento (l'ultimo in base all'ordinamento)
+                return codes.FirstOrDefault().CodePic;
+
+                //codicePIC = codes.Count().ToString();
             }
             else
             {
                 // Gestisci eventuali errori
                 TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+                return null;
             }
         }
 
-        public async void TakeCodeFromDBForPIC(string codiceCloud, string codicePic)
+        public async Task<string> TakeCodeFromDBForPIC(string codicePic)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -152,21 +156,25 @@ namespace SecurITPW.Pages.Codes
                         if(code.CodeCloud == null)
                         {
                             TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
+                            return null;
                         }
-                        codiceCloud = code.CodeCloud;
+                        return code.CodeCloud;
                     }
                 }
+                return null;
             }
             else
             {
                 // Gestisci eventuali errori
                 TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+                return null;
             }
         }
 
         public bool ConfrontCodes(string codicePic, string codeForWeb)
         {
-            return codicePic.Equals(codeForWeb);
+            string codeWithout = codicePic.Replace("\r", "");
+            return codeWithout.Equals(codeForWeb);
         }
 
         public string CreateNewCode()
