@@ -166,19 +166,19 @@ namespace SecurITPW.Pages.Codes
         public string CreateNewCode()
         {
 
-            string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             Random random = new Random();
 
-            StringBuilder stringBuilder = new StringBuilder(5);
+            StringBuilder codice = new StringBuilder(5);
 
             for (int i = 0; i < 5; i++)
             {
-                 int index = random.Next(Characters.Length);
-                 char randomChar = Characters[index];
-                 stringBuilder.Append(randomChar);
+                 int indice = random.Next(caratteri.Length);
+                 char carattere = caratteri[indice];
+                codice.Append(carattere);
             }
             
-            return stringBuilder.ToString();
+            return codice.ToString();
         }
 
     }
