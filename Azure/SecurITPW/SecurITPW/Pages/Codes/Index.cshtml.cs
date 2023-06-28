@@ -2,16 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using System.Data.SqlClient; //bisogna anche installare System.Data.SqlClient dalla gestione pacchetti nuget
-using System.Dynamic;
-using System.Net.NetworkInformation;
+
 //PER USARE LE API
 // Includi i namespace necessari
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Collections.Generic;
 using SecurITPW.Models;
-using System.Security.Permissions;
 using System.Text;
 
 namespace SecurITPW.Pages.Codes
@@ -38,6 +32,9 @@ namespace SecurITPW.Pages.Codes
         public string codeForWeb { get; set; }
         public string codeForPIC { get; set; }
         public string NewCode { get; set; }
+        public bool UnlockDoor { get; set; }
+        //variabile per dare errore nel caso in cui si digita sbagliato il codice nel pic
+        public bool equal2 { get; set; }
 
         public void OnGet()
         {
@@ -61,29 +58,35 @@ namespace SecurITPW.Pages.Codes
                 TempData["Message"] = "Codice inviato!";
 
                 // Prendi codice da DB
-                TakeCodeToConfront(codicePic);
+                TakeCodeFromDBForWeb(codicePic);
                 // Verifica che il codice sia uguale a quello inserito
-                var equal = ConfrontCodes(codicePic, codeForWeb);
-                if (equal == false)
+                var equal1 = ConfrontCodes(codicePic, codeForWeb);
+                if (equal1 == false)
                 {
                     TempData["Message"] = "CODICE ERRATO";
                 }
 
                 // Se uguale 
-                if (equal == true)
+                if (equal1 == true)
                 {
                     //crea nuovo codice
                     codeForPIC = CreateNewCode();
 
-                    // Invia il nuovo codice a DB
+                    // Prendi il codiche che il PIC manda al DB
+                    TakeCodeFromDBForPIC(codiceCloud);
 
-                    // Prendi altro codice da DB(quello che arriva dal PIC, che ha inserito l'utente)
+                    // Verifica che il codice preso da DB sia uguale a quello nuovo creato appena prima
+                    equal2 = ConfrontCodes(codiceCloud, codeForPIC);
 
-
-                    // Verifica che il codice preso da DB sia uguale a quello nuovo inviato appena prima
-
-
+                    if (equal2 == false)
+                    {
+                        TempData["Message"] = "CODICE INSERITO NEL PIC ERRATO";
+                    }
                     // Se uguale ritorna valore che apre la porta
+                    if (equal2 == true)
+                    {
+                        UnlockDoor = true;
+                    }
                 }
 
                 return Page();
@@ -99,7 +102,7 @@ namespace SecurITPW.Pages.Codes
             return RedirectToPage();
         }
 
-        public async void TakeCodeToConfront(string codicePic)
+        public async void TakeCodeFromDBForWeb(string codicePIC)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -113,12 +116,39 @@ namespace SecurITPW.Pages.Codes
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // Utilizza i dati ottenuti dall'API come desiderato
-
                 // DA SISTEMARE IL CONTROLLO NEL DB
                 foreach (var code in codes)
                 {
                     // Visualizza i dettagli del prodotto
-                    codicePic = code.CodePic;
+                    codicePIC = code.CodePic;
+                }
+            }
+            else
+            {
+                // Gestisci eventuali errori
+                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+            }
+        }
+
+        public async void TakeCodeFromDBForPIC(string codiceCloud)
+        {
+            // Crea un'istanza di HttpClient
+            var httpClient = new HttpClient();
+
+            // Effettua la chiamata all'API
+            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserializza la risposta in una lista di oggetti Product
+                var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+                // Utilizza i dati ottenuti dall'API come desiderato
+                // DA SISTEMARE IL CONTROLLO NEL DB
+                foreach (var code in codes)
+                {
+                    // Visualizza i dettagli del prodotto
+                    codiceCloud = code.CodeCloud;
                 }
             }
             else
@@ -150,6 +180,7 @@ namespace SecurITPW.Pages.Codes
             
             return stringBuilder.ToString();
         }
+
     }
 }
 

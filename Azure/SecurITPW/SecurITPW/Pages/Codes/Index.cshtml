@@ -4,6 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
+@{
+    bool equal2 = true;
+}
+
+
 <style>
     .custom-input {
         width: 200px; /* Imposta la larghezza desiderata */
@@ -33,4 +38,9 @@
          <label for="secondCodeInput">Codice da inserire:</label>
         <input type="text" id="secondCodeInput" name="codeForPIC" class="form-control custom-input" value="@Model.codeForPIC" readonly />
      </div>
+
+    @if (@equal2 == false)
+    {
+        <p>@TempData["Message"]</p>
+    }
 </div>
