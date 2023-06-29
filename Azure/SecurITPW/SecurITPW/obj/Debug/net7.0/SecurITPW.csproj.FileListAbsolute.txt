@@ -1863,3 +1863,4 @@ C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\ne
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\net7.0\SecurITPW.pdb
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\net7.0\SecurITPW.genruntimeconfig.cache
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\net7.0\ref\SecurITPW.dll
+C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Rest.ClientRuntime.dll
