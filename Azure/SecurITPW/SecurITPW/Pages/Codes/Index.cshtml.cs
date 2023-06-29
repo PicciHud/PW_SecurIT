@@ -8,8 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using SecurITPW.Models;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using SecurITPW.Data;
-using Microsoft.CodeAnalysis.Editing;
+using Newtonsoft.Json;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.Rest;
 
 namespace SecurITPW.Pages.Codes
 {
@@ -18,7 +19,11 @@ namespace SecurITPW.Pages.Codes
     public class IndexModel : PageModel
     {
         private readonly IConfiguration _configuration;
-        private readonly string _connectionString;
+        
+        //// Per IotHub
+        //private ServiceClient _serviceClient;
+        //private readonly string _iotHubConn; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
+
 
         public IndexModel(IConfiguration configuration)
         {
@@ -87,6 +92,11 @@ namespace SecurITPW.Pages.Codes
                     if (equal2 == true)
                     {
                         UnlockDoor = true;
+
+                        // Per IotHub
+                        //var deviceMessage = new Message(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(UnlockDoor)));
+                        //_serviceClient = ServiceClient.CreateFromConnectionString(_iotHubConn);
+                        //await _serviceClient.SendAsync(deviceId, deviceMessage);
                     }
                 }
 
