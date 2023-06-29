@@ -43,11 +43,12 @@ namespace SecurITPW.Pages.Codes
         public bool UnlockDoor { get; set; }
         //variabile per dare errore nel caso in cui si digita sbagliato il codice nel pic
         public bool equal2 { get; set; }
+        public string messaggio { get; set; }
 
         public void OnGet()
         {
             // Viene inizialmente popolato qui per poter vedere la casella di testo sul FE
-            NewCode = " ";
+            NewCode = "";
         }
 
         public async Task<IActionResult> OnPost()
@@ -84,9 +85,10 @@ namespace SecurITPW.Pages.Codes
                     // Verifica che il codice preso da DB sia uguale a quello nuovo creato appena prima
                     equal2 = ConfrontCodes(codiceCloud, codeForPIC);
 
+                    // Se diverso avvisa che è stato inserito errato
                     if (equal2 == false)
                     {
-                        var messaggio = "CODICE INSERITO NEL PIC ERRATO";
+                        messaggio = "CODICE INSERITO NEL PIC ERRATO";
                     }
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
