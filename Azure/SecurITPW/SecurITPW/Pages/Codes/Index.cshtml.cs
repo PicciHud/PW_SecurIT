@@ -78,7 +78,7 @@ namespace SecurITPW.Pages.Codes
                 TempData["Message"] = "Codice inviato!";
 
                 // DA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                // DA METTERE ANCHE IL CONTROLLO CHE IL JSON RITORNA IdStanza e IdCasa e Orario, PRENDERE L'ELEMENTO CON QUELLI?
+                // DA METTERE ANCHE IL CONTROLLO CHE IL JSON RITORNA IdPic e IdStanza e IdCasa e Orario, PRENDERE L'ELEMENTO CON QUELLI?
                 // Prendi codice da DB
                 var codicePic = await TakeCodeFromDBForWeb();
                 // Verifica che il codice sia uguale a quello inserito
