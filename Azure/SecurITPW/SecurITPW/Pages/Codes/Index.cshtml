@@ -1,0 +1,44 @@
+﻿@page
+@model SecurITPW.Pages.Codes.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    //bool equal2 = true;
+    string messaggio = "";
+}
+
+
+<style>
+    .custom-input {
+        width: 200px; /* Imposta la larghezza desiderata */
+        margin-left: auto; /* Imposta distanza dal bordo sinistro (perchè "text-center" non c'entra anche le caselle di testo e non sapevo come altro allinearle*/
+        margin-right: auto; /* Imposta distanza dal bordo destro (perchè "text-center" non c'entra anche le caselle di testo e non sapevo come altro allinearle*/
+    }
+</style>
+
+<h1>Accesso stanza</h1>
+
+<div class="text-center">
+    <form method="post">
+        <div class="form-group">
+            <label for="codeInput">Codice PIC:</label>
+            <input type="text" id="codeInput" name="codeForWeb" class="form-control custom-input" maxlength="5" />
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary">Invia</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <p>@TempData["Message"]</p>
+    }
+
+     <div class="mt-3">
+         <label for="secondCodeInput">Codice da inserire:</label>
+        <input type="text" id="secondCodeInput" name="codeForPIC" class="form-control custom-input" value="@Model.codeForPIC" readonly />
+     </div>
+
+    <p>@messaggio</p>
+</div>
