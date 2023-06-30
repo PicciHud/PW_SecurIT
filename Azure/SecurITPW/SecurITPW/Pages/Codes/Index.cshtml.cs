@@ -51,6 +51,7 @@ namespace SecurITPW.Pages.Codes
             NewCode = "";
         }
 
+        // creato per fare il messaggio per l'IotHub
         public class Access
         {
             public int Id { get; set; }
