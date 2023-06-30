@@ -11,7 +11,7 @@ https://learn.microsoft.com/it-it/azure/iot-hub/c2d-messaging-dotnet
 
 ## Creazione Web API Swagger
 https://medium.com/net-core/build-a-restful-web-api-with-asp-net-core-6-30747197e229
-Non serve crearle a mano, ma Eseguire lo scaffolding di un controller
+Non serve crearle a mano, ma **Eseguire lo scaffolding di un controller**
 https://learn.microsoft.com/it-it/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio
 
 
