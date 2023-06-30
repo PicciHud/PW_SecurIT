@@ -15,7 +15,7 @@
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT enabled)
 #pragma config PWRTE = ON       // Power-up Timer Enable bit (PWRT disabled)
 #pragma config BOREN = ON       // Brown-out Reset Enable bit (BOR enabled)
-#pragma config LVP = OFF        // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
+#pragma config LVP = ON        // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
 #pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
 #pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
@@ -63,26 +63,26 @@
 /* ---------------  GLOBAL VARIABLES ------------------- */
 
 // keypad variables
-unsigned char keypressed = 0; // numerical weight of key pressed
-char keyok = 0; // variable that shows if any key of keypad has been pressed
+unsigned char keypressed = 0;                                                           // numerical weight of key pressed
+char keyok = 0;                                                                         // variable that shows if any key of keypad has been pressed
 char dato[50];
 int i = 0;
 char tmpkpress;
 char dataParsed[50];
-char* boh;
+char code_keyboard[10];
 char received;
 char code_generate_send;
-int countOn = 0; // counter for 1 minute timer
-int countSec = 0; // counter for 1 second timer
-int numSec = 60; // variable that stores the number of seconds of timer
-char stop_wait = 0; // logical state (0: run free, 1: wait for the code from gateway)
-char buff[2]; // buffer that stores number into string format
-// PAY ATTENTION: if you declare an array with too much
-// cells (i.e. 100) compiler will throw an error
-
 char first = 0;
-char code_keyboard[10];
 char l = 0;
+int id = 0;                                                                             // Integer Id of PIC 
+int countOn = 0;                                                                        // counter for 1 minute timer
+int countSec = 0;                                                                       // counter for 1 second timer
+int numSec = 60;                                                                        // variable that stores the number of seconds of timer
+char stop_wait = 0;                                                                     // logical state (0: run free, 1: wait for the code from gateway)
+char buff[2];                                                                           // buffer that stores number into string format
+// PAY ATTENTION: if you declare an array with too much
+// cells (i.e. 100) thecompiler will throw an error
+
 
 const unsigned char colMask[3] = {
     //76543210 bit position
@@ -134,14 +134,14 @@ char keyPressed();
 /* ------------------- MAIN PROGRAM -------------------- */
 int main() {
     // registers initalization
-    TRISB = 0x00; // all PORTB ports as OUTPUT
-    TRISD = 0x0F;
-    INTCON |= 0xA0; // interrupt management
-    OPTION_REG = 0x05; // prescaler configuration
-    TMR0 = 6; // timer0 preload
+    TRISB = 0x00;                                                                       // all PORTB ports as OUTPUT
+    TRISD = 0x0F;                                                                       // 4 less significant bits as INPUT
+    INTCON |= 0xA0;                                                                     // interrupt management
+    OPTION_REG = 0x05;                                                                  // prescaler configuration
+    TMR0 = 6;                                                                           // timer0 preload
 
     // initialization
-    UART_init(115200); // serial communication
+    UART_init(115200);                                                                  // serial communication
     lcd_init();
     initKeyPad();
 
@@ -155,7 +155,6 @@ int main() {
         if (!code_generate_send)                                                        // if we want to generate only one code when pressing button
         { // so it's implemented something similar to debounce button
             // t = keyPressed();
-
             if (keyPressed() == '#') {
                 lcd_send(L_CLR, COMMAND);                                               // clear display
 
@@ -179,8 +178,8 @@ int main() {
                 char kpress = keyPressed();                                             // read the key pressed in that instant
                 
                 // little part of code useful to not print '!' character continuously
-                if (kpress != '!') {                                                    // if key no key has been pressed
-                    tmpkpress = kpress;
+                if (kpress != '!') {                                                    // if  no key has been pressed
+                    tmpkpress = kpress;                                                 // save key pressed for further controls
                 }
 
                 if (first == 1) {                                                       // if it is the first time I enter into "received" cycle
@@ -218,10 +217,12 @@ int main() {
                         //__delay_ms(5000);
 
                         if (strcmp(code_keyboard, dataParsed) == 0) {                  // compare the string received from cloud with user input
-                            lcd_str("OK!");                                            // the code is correct
+                            lcd_str("Codice corretto");
+                            lcd_send(L_L2, COMMAND);
+                            lcd_str("Porta APERTA");                                   // the code is correct
                             __delay_ms(5000);
                         } else {                                                       // the code is incorrect
-                            lcd_str("KO!");
+                            lcd_str("Codice errato");
                             __delay_ms(5000);
                         }
                         
@@ -240,10 +241,6 @@ int main() {
                         code_keyboard[l++] = kpress;
                         kpress = '!';                                                  // reset keypress to default value
                     }
-                } else {
-                    //lcd_str("ehi");
-                    //lcd_dat(tmpkpress);
-                    //__delay_ms(5000);
                 }
 
 
@@ -388,7 +385,7 @@ void lcd_send(char dato, char tipo) // 1st param: data - 2nd param: data type (i
 // --------------- code generator function ------------ //
 
 char* random_string(void) {
-    static char str[8];
+    static char str[6];
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     srand(TMR0);                                                                        // initialize random generator. WARNING: the compiler rise an error if this
@@ -399,9 +396,9 @@ char* random_string(void) {
         str[i] = charset[index];                                                        // for 5 times add the charachter into code array
     }
 
-    str[5] = '\r';
-    str[6] = '\n';
-    str[7] = '\0';                                                                      // add string terminator
+    //str[5] = '\r';
+    //str[6] = '\n';
+    str[5] = '\0';                                                                      // add string terminator
 
     return str;                                                                         // return the code array as pointer
 }
@@ -440,6 +437,7 @@ void UART_TxString(const char* str) {
         UART_TxChar(str[i]);
         i++;
     }
+    UART_TxChar('\n');
 }
 
 void parseData(char data[], char dataParsed[]) {
@@ -613,6 +611,8 @@ char keyPressed()
                 }    
 }
  */
+
+
 
 /* --------------  INTERRUPT MANAGEMENT --------------- */
 
