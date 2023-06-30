@@ -77,6 +77,8 @@ namespace SecurITPW.Pages.Codes
 
                 TempData["Message"] = "Codice inviato!";
 
+                // DA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                // DA METTERE ANCHE IL CONTROLLO CHE IL JSON RITORNA IdStanza e IdCasa e Orario, PRENDERE L'ELEMENTO CON QUELLI?
                 // Prendi codice da DB
                 var codicePic = await TakeCodeFromDBForWeb();
                 // Verifica che il codice sia uguale a quello inserito
@@ -105,6 +107,8 @@ namespace SecurITPW.Pages.Codes
                     {
                         messaggio = "CODICE INSERITO NEL PIC ERRATO";
                     }
+                    // DA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                    // SALVA ALL'INTERNO DEL JSON ANCHE LO USERNAME CON LA MAIL E LASCIA IL SURNAME VUOTO
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
                     {
