@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SecurITPW.Data;
 using SecurITPW.Models;
 
-namespace SecurITPW.Pages.Users
+namespace SecurITPW.Pages.AspNetUserses
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace SecurITPW.Pages.Users
             _context = context;
         }
 
-      public User User { get; set; } = default!; 
+      public AspNetUsers AspNetUsers { get; set; } = default!; 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.AspNetUsers == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            var aspnetusers = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Id == id);
+            if (aspnetusers == null)
             {
                 return NotFound();
             }
             else 
             {
-                User = user;
+                AspNetUsers = aspnetusers;
             }
             return Page();
         }

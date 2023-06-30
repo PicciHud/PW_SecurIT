@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SecurITPW.Data;
 using SecurITPW.Models;
 
-namespace SecurITPW.Pages.Users
+namespace SecurITPW.Pages.AspNetUserses
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace SecurITPW.Pages.Users
         }
 
         [BindProperty]
-      public User User { get; set; } = default!;
+      public AspNetUsers AspNetUsers { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.AspNetUsers == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.Id == id);
+            var aspnetusers = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (user == null)
+            if (aspnetusers == null)
             {
                 return NotFound();
             }
             else 
             {
-                User = user;
+                AspNetUsers = aspnetusers;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.AspNetUsers == null)
             {
                 return NotFound();
             }
-            var user = await _context.User.FindAsync(id);
+            var aspnetusers = await _context.AspNetUsers.FindAsync(id);
 
-            if (user != null)
+            if (aspnetusers != null)
             {
-                User = user;
-                _context.User.Remove(User);
+                AspNetUsers = aspnetusers;
+                _context.AspNetUsers.Remove(AspNetUsers);
                 await _context.SaveChangesAsync();
             }
 

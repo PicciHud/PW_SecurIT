@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SecurITPW.Data;
 using SecurITPW.Models;
 
-namespace SecurITPW.Pages.Users
+namespace SecurITPW.Pages.AspNetUserses
 {
     public class CreateModel : PageModel
     {
@@ -25,18 +25,18 @@ namespace SecurITPW.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public AspNetUsers AspNetUsers { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.User == null || User == null)
+          if (!ModelState.IsValid || _context.AspNetUsers == null || AspNetUsers == null)
             {
                 return Page();
             }
 
-            _context.User.Add(User);
+            _context.AspNetUsers.Add(AspNetUsers);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -18,6 +18,8 @@ namespace SecurITPW.Data
 
         public DbSet<SecurITPW.Models.House> House { get; set; } = default!;
 
-        public DbSet<SecurITPW.Models.User> User { get; set; } = default!;
+        //public DbSet<SecurITPW.Models.User> User { get; set; } = default!;
+
+        public DbSet<SecurITPW.Models.AspNetUsers> AspNetUsers { get; set; } = default!;
     }
 }

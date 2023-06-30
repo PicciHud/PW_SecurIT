@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SecurITPW.Data;
 using SecurITPW.Models;
 
-namespace SecurITPW.Pages.Users
+namespace SecurITPW.Pages.AspNetUserses
 {
     public class EditModel : PageModel
     {
@@ -21,21 +21,21 @@ namespace SecurITPW.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
+        public AspNetUsers AspNetUsers { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.AspNetUsers == null)
             {
                 return NotFound();
             }
 
-            var user =  await _context.User.FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            var aspnetusers =  await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Id == id);
+            if (aspnetusers == null)
             {
                 return NotFound();
             }
-            User = user;
+            AspNetUsers = aspnetusers;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace SecurITPW.Pages.Users
                 return Page();
             }
 
-            _context.Attach(User).State = EntityState.Modified;
+            _context.Attach(AspNetUsers).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace SecurITPW.Pages.Users
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(User.Id))
+                if (!AspNetUsersExists(AspNetUsers.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace SecurITPW.Pages.Users
             return RedirectToPage("./Index");
         }
 
-        private bool UserExists(int id)
+        private bool AspNetUsersExists(string id)
         {
-          return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.AspNetUsers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
