@@ -1,0 +1,1 @@
+Questo è da mettere nel Raspberry per il giro di ritorno del messaggio

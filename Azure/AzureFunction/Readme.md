@@ -1,0 +1,1 @@
+Azure Function che scoda i messaggi nel Service Bus Queue e fa le chiamate API al DB per inserire il messa
