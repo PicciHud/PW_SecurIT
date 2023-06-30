@@ -9,8 +9,9 @@ using SecurITPW.Models;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using Microsoft.Rest;
+using Microsoft.Azure.Devices; //da installare con Nuget se non la trova
+using NuGet.Protocol;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace SecurITPW.Pages.Codes
 {
@@ -19,11 +20,10 @@ namespace SecurITPW.Pages.Codes
     public class IndexModel : PageModel
     {
         private readonly IConfiguration _configuration;
-        
-        //// Per IotHub
-        //private ServiceClient _serviceClient;
-        //private readonly string _iotHubConn; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
 
+        // Per IotHub
+        private ServiceClient _serviceClient;
+        private readonly string _iotHubConn; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
 
         public IndexModel(IConfiguration configuration)
         {
@@ -49,6 +49,20 @@ namespace SecurITPW.Pages.Codes
         {
             // Viene inizialmente popolato qui per poter vedere la casella di testo sul FE
             NewCode = "";
+        }
+
+        public class Access
+        {
+            public int Id { get; set; }
+            public string? CodePic { get; set; }
+            public string? CodeCloud { get; set; }
+            public int IdPic { get; set; }
+            public int IdUser { get; set; }
+            public string? Name { get; set; }
+            public string? SurName { get; set; }
+            public int IdHouse { get; set; }
+            public int IdRoom { get; set; }
+            public DateTime Time { get; set; }
         }
 
         public async Task<IActionResult> OnPost()
@@ -93,12 +107,15 @@ namespace SecurITPW.Pages.Codes
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
                     {
-                        UnlockDoor = true;
+                        Access access = new Access();
+                        access = await inizializedAccess(access);
 
+                        access.ToJson();
+                        
                         // Per IotHub
-                        //var deviceMessage = new Message(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(UnlockDoor)));
-                        //_serviceClient = ServiceClient.CreateFromConnectionString(_iotHubConn);
-                        //await _serviceClient.SendAsync(deviceId, deviceMessage);
+                        var deviceMessage = new Microsoft.Azure.Devices.Message(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(access)));
+                        _serviceClient = ServiceClient.CreateFromConnectionString(_iotHubConn);
+                        await _serviceClient.SendAsync("SecurIT-Device", deviceMessage); //deviceId è il nome del device dell'IotHub?? Se si è "SecurIT-Device", ma come gli dico che è quel tipo di device??
                     }
                 }
 
@@ -130,8 +147,8 @@ namespace SecurITPW.Pages.Codes
 
                 // UTILIZZA I DATI OTTENUTI DALL'API COME DESIDERATO
 
-                // Ordina la lista in base alla colonna "codicePic" in ordine decrescente
-                codes = codes.OrderByDescending(d => d.Id).ToList();
+                // Ordina la lista in base alla colonna "Time" in ordine decrescente
+                codes = codes.OrderByDescending(d => d.Time).ToList();
 
                 // Prendi il primo elemento (l'ultimo in base all'ordinamento)
                 return codes.FirstOrDefault().CodePic;
@@ -205,6 +222,51 @@ namespace SecurITPW.Pages.Codes
             }
             
             return codice.ToString();
+        }
+
+        public async Task<Access> inizializedAccess(Access access)
+        {
+            // Crea un'istanza di HttpClient
+            var httpClient = new HttpClient();
+
+            // Effettua la chiamata all'API
+            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserializza la risposta in una lista di oggetti
+                var messageToIotHub = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+                // UTILIZZA I DATI OTTENUTI DALL'API COME DESIDERATO
+
+                // Ordina la lista in base alla colonna "Time" in ordine decrescente
+                messageToIotHub = messageToIotHub.OrderByDescending(d => d.Time).ToList();
+
+                //Prendi il primo elemento(l'ultimo in base all'ordinamento)
+                messageToIotHub.FirstOrDefault();
+
+                var latestAccess = messageToIotHub.FirstOrDefault();
+
+                // valorizza access
+                access.Id = latestAccess.Id;
+                access.CodePic = latestAccess.CodePic;
+                access.CodeCloud = latestAccess.CodeCloud;
+                access.IdPic = latestAccess.IdPic;
+                access.IdUser = latestAccess.IdUser;
+                access.Name = latestAccess.Name;
+                access.SurName = latestAccess.SurName;
+                access.IdHouse = latestAccess.IdHouse;
+                access.IdRoom = latestAccess.IdRoom;
+                access.Time = latestAccess.Time;
+
+                return access;
+            }
+            else
+            {
+                // Gestisci eventuali errori
+                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+                return null;
+            }
         }
 
     }

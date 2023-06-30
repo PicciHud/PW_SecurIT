@@ -11731,24 +11731,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bonal\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
       "projectName": "CampusWebAPI",
-      "projectPath": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
-      "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -1,4 +1,4 @@
-﻿using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+﻿
 
 namespace SecurITPW.Models
 {

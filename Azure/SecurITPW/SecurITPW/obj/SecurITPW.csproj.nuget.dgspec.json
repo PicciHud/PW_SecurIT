@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
+    "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
+    "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "projectName": "SecurITPW",
-        "projectPath": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
-        "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonal\\Desktop\\ProWork\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\merdaInCulo\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -56,6 +55,10 @@
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[7.0.7, )"
+            },
+            "Microsoft.Azure.Devices": {
+              "target": "Package",
+              "version": "[1.39.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
