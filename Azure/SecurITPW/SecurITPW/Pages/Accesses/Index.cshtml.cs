@@ -5,7 +5,7 @@ using SecurITPW.Models;
 
 namespace SecurITPW.Pages.Accesses
 {
-    [Authorize(Roles = "Administrator")] //Solo gli utenti del gruppo Admin posso accedere alla pagina
+    //[Authorize(Roles = "Administrator")] //Solo gli utenti del gruppo Admin posso accedere alla pagina
     public class IndexModel : PageModel
     {
         private readonly SecurITPW.Data.SecurITPWContext _context;

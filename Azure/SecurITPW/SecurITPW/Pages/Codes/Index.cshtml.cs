@@ -5,13 +5,11 @@ using Microsoft.IdentityModel.Tokens;
 
 //PER USARE LE API
 // Includi i namespace necessari
-using SecurITPW.Models;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Microsoft.Azure.Devices; //da installare con Nuget se non la trova
 using NuGet.Protocol;
-using Microsoft.AspNetCore.DataProtection;
 
 namespace SecurITPW.Pages.Codes
 {
@@ -23,7 +21,7 @@ namespace SecurITPW.Pages.Codes
 
         // Per IotHub
         private ServiceClient _serviceClient;
-        private readonly string _iotHubConn; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
+        private readonly string _iotHubConn = "HostName=SecurIT.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=VRySmDOXf1a6L7G6e3C73FlugiorWXEVbsboH2G1AlA="; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
 
         public IndexModel(IConfiguration configuration)
         {
@@ -83,6 +81,7 @@ namespace SecurITPW.Pages.Codes
                 var codicePic = await TakeCodeFromDBForWeb();
                 // Verifica che il codice sia uguale a quello inserito
                 var equal1 = ConfrontCodes(codicePic, codeForWeb);
+
                 if (equal1 == false)
                 {
                     TempData["Message"] = "CODICE ERRATO";
@@ -95,10 +94,11 @@ namespace SecurITPW.Pages.Codes
                     codeForPIC = CreateNewCode();
 
                     // Prendi il codice che il PIC manda al DB
-                    var codiceCloud = TakeCodeFromDBForPIC(codicePic).ToString();
+                    var codiceCloud = codeForPIC;
+                                      //await TakeCodeFromDBForPIC(codicePic);
 
                     // Verifica che il codice preso da DB sia uguale a quello nuovo creato appena prima
-                    equal2 = ConfrontCodes(codiceCloud, codeForPIC);
+                    var equal2 = ConfrontCodes(codiceCloud, codeForPIC);
 
                     // Se diverso avvisa che è stato inserito errato
                     if (equal2 == false)
@@ -109,7 +109,7 @@ namespace SecurITPW.Pages.Codes
                     if (equal2 == true)
                     {
                         Access access = new Access();
-                        access = await inizializedAccess(access);
+                        access = await inizializedAccess(access, codiceCloud);
 
                         access.ToJson();
                         
@@ -164,43 +164,6 @@ namespace SecurITPW.Pages.Codes
             }
         }
 
-        public async Task<string> TakeCodeFromDBForPIC(string codicePic)
-        {
-            // Crea un'istanza di HttpClient
-            var httpClient = new HttpClient();
-
-            // Effettua la chiamata all'API
-            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
-
-            if (response.IsSuccessStatusCode)
-            {
-                // Deserializza la risposta in una lista di oggetti Product
-                var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
-
-                // Utilizza i dati ottenuti dall'API come desiderato
-                // DA SISTEMARE IL CONTROLLO NEL DB??
-                foreach (var code in codes)
-                {
-                    if (codicePic == code.CodePic)
-                    {
-                        if(code.CodeCloud == null)
-                        {
-                            TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
-                            return null;
-                        }
-                        return code.CodeCloud;
-                    }
-                }
-                return null;
-            }
-            else
-            {
-                // Gestisci eventuali errori
-                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
-                return null;
-            }
-        }
-
         public bool ConfrontCodes(string codicePic, string codeForWeb)
         {
             string codeWithout = codicePic.Replace("\r", "");
@@ -225,7 +188,7 @@ namespace SecurITPW.Pages.Codes
             return codice.ToString();
         }
 
-        public async Task<Access> inizializedAccess(Access access)
+        public async Task<Access> inizializedAccess(Access access, string codiceCloud)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -248,10 +211,12 @@ namespace SecurITPW.Pages.Codes
 
                 var latestAccess = messageToIotHub.FirstOrDefault();
 
+                string codePicWithout = latestAccess.CodePic.Replace("\r", "");
+
                 // valorizza access
                 access.Id = latestAccess.Id;
-                access.CodePic = latestAccess.CodePic;
-                access.CodeCloud = latestAccess.CodeCloud;
+                access.CodePic = codePicWithout;
+                access.CodeCloud = codiceCloud;
                 access.IdPic = latestAccess.IdPic;
                 access.IdUser = latestAccess.IdUser;
                 access.Name = latestAccess.Name;
@@ -270,6 +235,48 @@ namespace SecurITPW.Pages.Codes
             }
         }
 
+
+
+
+
+
+        // Alla fine è inutile, la tengo per sicurezza
+        public async Task<string> TakeCodeFromDBForPIC(string codicePic)
+        {
+            // Crea un'istanza di HttpClient
+            var httpClient = new HttpClient();
+
+            // Effettua la chiamata all'API
+            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserializza la risposta in una lista di oggetti Product
+                var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+                // Utilizza i dati ottenuti dall'API come desiderato
+                // DA SISTEMARE IL CONTROLLO NEL DB??
+                foreach (var code in codes)
+                {
+                    if (codicePic == code.CodePic)
+                    {
+                        if (code.CodeCloud == null)
+                        {
+                            TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
+                            return null;
+                        }
+                        return code.CodeCloud;
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                // Gestisci eventuali errori
+                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+                return null;
+            }
+        }
     }
 }
 

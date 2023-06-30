@@ -1864,3 +1864,7 @@ C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\ne
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\net7.0\SecurITPW.genruntimeconfig.cache
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\obj\Debug\net7.0\ref\SecurITPW.dll
 C:\Users\bonal\Desktop\ProWork\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Rest.ClientRuntime.dll
+C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Azure.Amqp.dll
+C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Azure.Devices.dll
+C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Azure.Devices.Shared.dll
+C:\Users\User\Desktop\merdaInCulo\PW_SecurIT\Azure\SecurITPW\SecurITPW\bin\Debug\net7.0\Microsoft.Rest.ClientRuntime.dll
