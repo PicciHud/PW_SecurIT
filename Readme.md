@@ -16,6 +16,6 @@ Dovrà esserci inoltre un account di amministratore, che potrà visualizzare gli
 
 |User|ToDo|
 |---|---|
-|Alessandro|Backend e Frontend|
-|Davide|Raspberry, Documentazione, Database, Frontend|
+|Alessandro|Backend e Frontend, Database|
+|Davide|Raspberry, Documentazione, Frontend|
 |Filippo|Pic, Presentazione|
