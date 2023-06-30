@@ -21,7 +21,8 @@ namespace SecurITPW.Pages.Accesses
         {
             if (_context.Access != null)
             {
-                Access = await _context.Access.ToListAsync();
+                // Ordina la lista degli accessi in modo decrescente in base all'orario
+                Access = await _context.Access.OrderByDescending(a => a.Time).ToListAsync();
             }
         }
     }

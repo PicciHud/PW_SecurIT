@@ -173,7 +173,7 @@ namespace SecurITPW.Pages.Codes
         public string CreateNewCode()
         {
 
-            string caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string caratteri = "0123456789";
             Random random = new Random();
 
             StringBuilder codice = new StringBuilder(5);
