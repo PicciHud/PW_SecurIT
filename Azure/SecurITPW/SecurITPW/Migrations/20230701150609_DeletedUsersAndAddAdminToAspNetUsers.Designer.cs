@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecurITPW.Data;
 
@@ -11,9 +12,11 @@ using SecurITPW.Data;
 namespace SecurITPW.Migrations
 {
     [DbContext(typeof(SecurITPWContext))]
-    partial class SecurITPWContextModelSnapshot : ModelSnapshot
+    [Migration("20230701150609_DeletedUsersAndAddAdminToAspNetUsers")]
+    partial class DeletedUsersAndAddAdminToAspNetUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
