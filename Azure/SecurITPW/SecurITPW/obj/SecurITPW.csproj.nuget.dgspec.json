@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
+    "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
+    "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "projectUniqueName": "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
         "projectName": "SecurITPW",
-        "projectPath": "C:\\Users\\User\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+        "projectPath": "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+        "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
+        "outputPath": "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,9 +57,13 @@
               "target": "Package",
               "version": "[1.39.0, )"
             },
+            "Microsoft.Azure.ServiceBus": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

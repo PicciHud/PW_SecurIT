@@ -11,13 +11,32 @@ using Newtonsoft.Json;
 using Microsoft.Azure.Devices; //da installare con Nuget se non la trova
 using NuGet.Protocol;
 
+//Per ServiceBus
+using Microsoft.Azure.ServiceBus;
+
 namespace SecurITPW.Pages.Codes
 {
     [Authorize] // Aggiungiamo l'attributo Authorize per richiedere l'autenticazione
 
     public class IndexModel : PageModel
     {
+        [BindProperty]
+        public string codeForWeb { get; set; }
+        public string codeForPIC { get; set; }
+        public string NewCode { get; set; }
+        public bool UnlockDoor { get; set; }
+        //variabile per dare errore nel caso in cui si digita sbagliato il codice nel pic
+        public bool equal2 { get; set; }
+        public string messaggio { get; set; }
+
+
         private readonly IConfiguration _configuration;
+
+        // Per ServiceBus
+        //"Your_ServiceBus_Connection_String";
+        private const string ServiceBusConnectionString = "Endpoint=sb://securit.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RFtJ267H1qEUxXv73KqDILGAp23xMocRs+ASbCF4ajY=";
+        //"Your_Queue_Name";
+        private const string QueueName = "SecurIT";
 
         // Per IotHub
         private ServiceClient _serviceClient;
@@ -34,21 +53,6 @@ namespace SecurITPW.Pages.Codes
             }
         }
 
-        [BindProperty]
-        public string codeForWeb { get; set; }
-        public string codeForPIC { get; set; }
-        public string NewCode { get; set; }
-        public bool UnlockDoor { get; set; }
-        //variabile per dare errore nel caso in cui si digita sbagliato il codice nel pic
-        public bool equal2 { get; set; }
-        public string messaggio { get; set; }
-
-        public void OnGet()
-        {
-            // Viene inizialmente popolato qui per poter vedere la casella di testo sul FE
-            NewCode = "";
-        }
-
         // creato per fare il messaggio per l'IotHub
         public class Access
         {
@@ -56,12 +60,26 @@ namespace SecurITPW.Pages.Codes
             public string? CodePic { get; set; }
             public string? CodeCloud { get; set; }
             public int IdPic { get; set; }
-            public int IdUser { get; set; }
+            public int? IdUser { get; set; }
             public string? Name { get; set; }
             public string? SurName { get; set; }
             public int IdHouse { get; set; }
             public int IdRoom { get; set; }
             public DateTime Time { get; set; }
+        }
+
+        Access access = new Access();
+
+        public async Task<IActionResult> OnGet()
+        {
+            // Viene inizialmente popolato qui per poter vedere la casella di testo sul FE
+            NewCode = "";
+
+            // Per ServiceBus
+            //ricevi json dal service bus per prendere IdPic, IdRoom, IdHouse e Time //me li inizializza??
+            access = await ReceiveAndDeserializeJson();
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPost()
@@ -77,10 +95,8 @@ namespace SecurITPW.Pages.Codes
 
                 TempData["Message"] = "Codice inviato!";
 
-                // DA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                // DA METTERE ANCHE IL CONTROLLO CHE IL JSON RITORNA IdPic e IdStanza e IdCasa e Orario, PRENDERE L'ELEMENTO CON QUELLI?
                 // Prendi codice da DB
-                var codicePic = await TakeCodeFromDBForWeb();
+                var codicePic = await TakeCodeFromDBForWeb(access);
                 // Verifica che il codice sia uguale a quello inserito
                 var equal1 = ConfrontCodes(codicePic, codeForWeb);
 
@@ -112,7 +128,6 @@ namespace SecurITPW.Pages.Codes
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
                     {
-                        Access access = new Access();
                         access = await inizializedAccess(access, codiceCloud);
 
                         access.ToJson();
@@ -137,7 +152,7 @@ namespace SecurITPW.Pages.Codes
             return RedirectToPage();
         }
 
-        public async Task<string> TakeCodeFromDBForWeb()
+        public async Task<string> TakeCodeFromDBForWeb(Access access)
         {
             // Crea un'istanza di HttpClient
             var httpClient = new HttpClient();
@@ -151,9 +166,13 @@ namespace SecurITPW.Pages.Codes
                 var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // UTILIZZA I DATI OTTENUTI DALL'API COME DESIDERATO
-
-                // Ordina la lista in base alla colonna "Time" in ordine decrescente
-                codes = codes.OrderByDescending(d => d.Time).ToList();
+                // IL JSON RITORNA IdPic e IdRoom e IdHouse e Time, PRENDERE L'ELEMENTO CON QUELLI
+                // Ordina la lista in base alla colonna IdPic e IdRoom e IdHouse e Time in ordine decrescente
+                codes = codes.OrderByDescending(d => d.Time)
+                             .ThenByDescending(d => d.IdPic)
+                             .ThenByDescending(d => d.IdRoom)
+                             .ThenByDescending(d => d.IdHouse)
+                             .ToList();
 
                 // Prendi il primo elemento (l'ultimo in base all'ordinamento)
                 return codes.FirstOrDefault().CodePic;
@@ -206,13 +225,15 @@ namespace SecurITPW.Pages.Codes
                 var messageToIotHub = await response.Content.ReadFromJsonAsync<List<Access>>();
 
                 // UTILIZZA I DATI OTTENUTI DALL'API COME DESIDERATO
-
-                // Ordina la lista in base alla colonna "Time" in ordine decrescente
-                messageToIotHub = messageToIotHub.OrderByDescending(d => d.Time).ToList();
+                // IL JSON RITORNA IdPic e IdRoom e IdHouse e Time, PRENDERE L'ELEMENTO CON QUELLI
+                // Ordina la lista in base alla colonna IdPic e IdRoom e IdHouse e Time in ordine decrescente
+                messageToIotHub = messageToIotHub.OrderByDescending(d => d.Time)
+                             .ThenByDescending(d => d.IdPic)
+                             .ThenByDescending(d => d.IdRoom)
+                             .ThenByDescending(d => d.IdHouse)
+                             .ToList();
 
                 //Prendi il primo elemento(l'ultimo in base all'ordinamento)
-                messageToIotHub.FirstOrDefault();
-
                 var latestAccess = messageToIotHub.FirstOrDefault();
 
                 string codePicWithout = latestAccess.CodePic.Replace("\r", "");
@@ -239,50 +260,87 @@ namespace SecurITPW.Pages.Codes
             }
         }
 
-
-
-
-
-
-        // Alla fine è inutile, la tengo per sicurezza
-        public async Task<string> TakeCodeFromDBForPIC(string codicePic)
+        // Per ServiceBus
+        private async Task<Access> ReceiveAndDeserializeJson()
         {
-            // Crea un'istanza di HttpClient
-            var httpClient = new HttpClient();
+            QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
-            // Effettua la chiamata all'API
-            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+            // Registrazione del gestore del messaggio
+            queueClient.RegisterMessageHandler(ProcessMessagesAsync, new MessageHandlerOptions(ExceptionReceivedHandler) { MaxConcurrentCalls = 1 });
 
-            if (response.IsSuccessStatusCode)
-            {
-                // Deserializza la risposta in una lista di oggetti Product
-                var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+            // Attesa di 5 secondi per la ricezione dei messaggi
+            await Task.Delay(TimeSpan.FromSeconds(5));
 
-                // Utilizza i dati ottenuti dall'API come desiderato
-                // DA SISTEMARE IL CONTROLLO NEL DB??
-                foreach (var code in codes)
-                {
-                    if (codicePic == code.CodePic)
-                    {
-                        if (code.CodeCloud == null)
-                        {
-                            TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
-                            return null;
-                        }
-                        return code.CodeCloud;
-                    }
-                }
-                return null;
-            }
-            else
-            {
-                // Gestisci eventuali errori
-                TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
-                return null;
-            }
+            // Chiusura del client e del gestore del messaggio
+            await queueClient.CloseAsync();
+
+            return _receivedAccess;
+        }
+
+        private Access _receivedAccess;
+
+        private async Task ProcessMessagesAsync(Microsoft.Azure.ServiceBus.Message message, CancellationToken token)
+        {
+            string json = Encoding.UTF8.GetString(message.Body);
+
+            _receivedAccess = JsonConvert.DeserializeObject<Access>(json);
+
+            // Completare il messaggio per rimuoverlo dalla coda
+            QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+            await queueClient.CompleteAsync(message.SystemProperties.LockToken);
+        }
+
+        private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
+        {
+            Console.WriteLine($"Exception occurred: {exceptionReceivedEventArgs.Exception}");
+            return Task.CompletedTask;
         }
     }
+
+
+
+
+
+
+    //// Alla fine è inutile, la tengo per sicurezza
+    //public async Task<string> TakeCodeFromDBForPIC(string codicePic)
+    //{
+    //    // Crea un'istanza di HttpClient
+    //    var httpClient = new HttpClient();
+
+    //    // Effettua la chiamata all'API
+    //    var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+
+    //    if (response.IsSuccessStatusCode)
+    //    {
+    //        // Deserializza la risposta in una lista di oggetti Product
+    //        var codes = await response.Content.ReadFromJsonAsync<List<Access>>();
+
+    //        // Utilizza i dati ottenuti dall'API come desiderato
+    //        // DA SISTEMARE IL CONTROLLO NEL DB??
+    //        foreach (var code in codes)
+    //        {
+    //            if (codicePic == code.CodePic)
+    //            {
+    //                if (code.CodeCloud == null)
+    //                {
+    //                    TempData["Message"] = "ERRORE: \\nCodice inesistente nel DB, impossibile aprire la porta";
+    //                    return null;
+    //                }
+    //                return code.CodeCloud;
+    //            }
+    //        }
+    //        return null;
+    //    }
+    //    else
+    //    {
+    //        // Gestisci eventuali errori
+    //        TempData["Message"] = "Si è verificato un errore durante la chiamata all'API";
+    //        return null;
+    //    }
+    //}
 }
+
 
 
 
