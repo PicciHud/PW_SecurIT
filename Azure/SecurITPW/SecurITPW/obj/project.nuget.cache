@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "c26Yk5NEjsPnZb9Beh56++JKV2c/LG4MtZAB8wKSV6bqz5DSatGuqJdET0OtZuOXY+QCF0TNA71GQmK0/a+/uQ==",
+  "dgSpecHash": "bBwFdxVpB97dKAg9F78yJPUKsahRAZsIBTmSAfRe9PN9d0hIaOkoQx5vmoLcs8x071GHCw/tRnS27B4RIMtY1w==",
   "success": true,
-  "projectFilePath": "D:\\PW4\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+  "projectFilePath": "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bonal\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bonal\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

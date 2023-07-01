@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u5EvbydiQJ4nF3BH0nK+E7EkvI67h+V+MSfEIkH9O+xRgHfnDBuAOCE1AVuDW6NUVLJ435jvOo4pJLmspSwoWQ==",
+  "dgSpecHash": "FpqlXUtPFr8BYt8Ey/mxhwDMYP3u8VknBQc9CTGAlExmu58SWCX8weuyUaAcipzH/K4q7YDieXZy1vDQsm0gZA==",
   "success": true,
-  "projectFilePath": "D:\\PW4\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+  "projectFilePath": "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bonal\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bonal\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

@@ -24,23 +24,21 @@ namespace SecurITPW.Pages.Codes
         public string codeForWeb { get; set; }
         public string codeForPIC { get; set; }
         public string NewCode { get; set; }
-        public bool UnlockDoor { get; set; }
         //variabile per dare errore nel caso in cui si digita sbagliato il codice nel pic
-        public bool equal2 { get; set; }
         public string messaggio { get; set; }
-
-
-        private readonly IConfiguration _configuration;
 
         // Per ServiceBus
         //"Your_ServiceBus_Connection_String";
         private const string ServiceBusConnectionString = "Endpoint=sb://securit.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RFtJ267H1qEUxXv73KqDILGAp23xMocRs+ASbCF4ajY=";
         //"Your_Queue_Name";
         private const string QueueName = "SecurIT";
+        private Access _receivedAccess;
 
         // Per IotHub
         private ServiceClient _serviceClient;
         private readonly string _iotHubConn = "HostName=SecurIT.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=VRySmDOXf1a6L7G6e3C73FlugiorWXEVbsboH2G1AlA="; // DA METTERE CHE CORRISPONDE ALLA STRINGA DI CONNESSIONE DELL' IotHub??
+
+        private readonly IConfiguration _configuration;
 
         public IndexModel(IConfiguration configuration)
         {
@@ -76,7 +74,7 @@ namespace SecurITPW.Pages.Codes
             NewCode = "";
 
             // Per ServiceBus
-            //ricevi json dal service bus per prendere IdPic, IdRoom, IdHouse e Time //me li inizializza??
+            // Ricevi json dal service bus per prendere IdPic, IdRoom, IdHouse e Time //me li inizializza?? da verificare
             access = await ReceiveAndDeserializeJson();
 
             return Page();
@@ -123,8 +121,7 @@ namespace SecurITPW.Pages.Codes
                     {
                         messaggio = "CODICE INSERITO NEL PIC ERRATO";
                     }
-                    // DA SISTEMAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                    // SALVA ALL'INTERNO DEL JSON ANCHE LO USERNAME CON LA MAIL E LASCIA IL SURNAME VUOTO
+
                     // Se uguale ritorna valore che apre la porta
                     if (equal2 == true)
                     {
@@ -238,6 +235,7 @@ namespace SecurITPW.Pages.Codes
 
                 string codePicWithout = latestAccess.CodePic.Replace("\r", "");
 
+                // Salva all'interno del json i vari campi e inserisce anche quelli mancati, il Surname dovrebbe rimanere vuoto //DA VERIFICARE
                 // valorizza access
                 access.Id = latestAccess.Id;
                 access.CodePic = codePicWithout;
@@ -276,8 +274,6 @@ namespace SecurITPW.Pages.Codes
 
             return _receivedAccess;
         }
-
-        private Access _receivedAccess;
 
         private async Task ProcessMessagesAsync(Microsoft.Azure.ServiceBus.Message message, CancellationToken token)
         {
