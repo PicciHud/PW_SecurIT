@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SecurITPW.Models;
 
 namespace SecurITPW.Pages.AspNetUserses
 {
+    [Authorize] // Aggiungiamo l'attributo Authorize per richiedere l'autenticazione
+
     public class IndexModel : PageModel
     {
         private readonly SecurITPW.Data.SecurITPWContext _context;
