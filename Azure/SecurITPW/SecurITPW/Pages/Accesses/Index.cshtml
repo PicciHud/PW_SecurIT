@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-@if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h1>Accessi</h1>
     <table class="table">

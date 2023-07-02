@@ -166,9 +166,9 @@ namespace SecurITPW.Pages.Codes
                 // IL JSON RITORNA IdPic e IdRoom e IdHouse e Time, PRENDERE L'ELEMENTO CON QUELLI
                 // Ordina la lista in base alla colonna IdPic e IdRoom e IdHouse e Time in ordine decrescente
                 codes = codes.OrderByDescending(d => d.Time)
-                             .ThenByDescending(d => d.IdPic)
-                             .ThenByDescending(d => d.IdRoom)
-                             .ThenByDescending(d => d.IdHouse)
+                             //.ThenByDescending(d => d.IdPic)
+                             //.ThenByDescending(d => d.IdRoom)
+                             //.ThenByDescending(d => d.IdHouse)
                              .ToList();
 
                 // Prendi il primo elemento (l'ultimo in base all'ordinamento)
@@ -225,9 +225,9 @@ namespace SecurITPW.Pages.Codes
                 // IL JSON RITORNA IdPic e IdRoom e IdHouse e Time, PRENDERE L'ELEMENTO CON QUELLI
                 // Ordina la lista in base alla colonna IdPic e IdRoom e IdHouse e Time in ordine decrescente
                 messageToIotHub = messageToIotHub.OrderByDescending(d => d.Time)
-                             .ThenByDescending(d => d.IdPic)
-                             .ThenByDescending(d => d.IdRoom)
-                             .ThenByDescending(d => d.IdHouse)
+                             //.ThenByDescending(d => d.IdPic)
+                             //.ThenByDescending(d => d.IdRoom)
+                             //.ThenByDescending(d => d.IdHouse)
                              .ToList();
 
                 //Prendi il primo elemento(l'ultimo in base all'ordinamento)
