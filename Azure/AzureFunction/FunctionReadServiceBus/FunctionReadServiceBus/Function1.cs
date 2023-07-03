@@ -13,7 +13,7 @@ public static class Function1
 
     [FunctionName("Function1")]
     public static async Task Run(
-        [ServiceBusTrigger("securit_queue", Connection = "AzureWebJobsStorage")] string message,
+        [ServiceBusTrigger("securit_queue", Connection = "ServiceBus")] string message,
         ILogger log)
     {
         try
