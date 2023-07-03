@@ -1,3 +1,4 @@
 Azure/SecurITPW/SecurITPW/appsettings.json
 Azure/WebAPI/CampusWebAPI/CampusWebAPI/appsettings.json
 Azure/WebAPI/CampusWebAPI/.vs
+Azure/AzureFunction/FunctionReadServiceBus/FunctionReadServiceBus/local.settings.json

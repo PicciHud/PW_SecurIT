@@ -1,0 +1,17 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions.Generator-4.1.1",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "serviceBusTrigger",
+      "connection": "AzureWebJobsStorage",
+      "queueName": "securit_queue",
+      "isSessionsEnabled": false,
+      "autoCompleteMessages": true,
+      "name": "message"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/FunctionReadServiceBus.dll",
+  "entryPoint": "Function1.Run"
+}

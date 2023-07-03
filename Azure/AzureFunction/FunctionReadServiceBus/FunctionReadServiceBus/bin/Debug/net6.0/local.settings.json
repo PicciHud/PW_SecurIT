@@ -1,0 +1,6 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "Endpoint=sb://securit.servicebus.windows.net/;SharedAccessKeyName=iothubroutes_ITS-QZER-ProjectWorkY2-Gruppo7;SharedAccessKey=MVpf/JfEAAjbUuAi66YyNApcCd0IiXYss+ASbNleajQ=;"
+  }
+}
