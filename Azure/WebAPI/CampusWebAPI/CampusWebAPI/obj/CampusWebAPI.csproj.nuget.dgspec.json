@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj": {}
+    "C:\\Users\\alessandro.bonaldo\\Desktop\\Prova\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj": {
+    "C:\\Users\\alessandro.bonaldo\\Desktop\\Prova\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\alessandro.bonaldo\\Desktop\\Prova\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
         "projectName": "CampusWebAPI",
-        "projectPath": "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
-        "packagesPath": "C:\\Users\\bonal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bonal\\Desktop\\Nuova cartella\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\alessandro.bonaldo\\Desktop\\Prova\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+        "packagesPath": "C:\\Users\\alessandro.bonaldo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alessandro.bonaldo\\Desktop\\Prova\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\bonal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alessandro.bonaldo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,6 +28,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "http://10.52.0.56:8999/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

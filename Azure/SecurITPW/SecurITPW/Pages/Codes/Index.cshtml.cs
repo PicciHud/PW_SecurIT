@@ -28,11 +28,11 @@ namespace SecurITPW.Pages.Codes
         public string messaggio { get; set; }
 
         // Per ServiceBus
-        //"Your_ServiceBus_Connection_String";
-        private const string ServiceBusConnectionString = "Endpoint=sb://securit.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RFtJ267H1qEUxXv73KqDILGAp23xMocRs+ASbCF4ajY=";
-        //"Your_Queue_Name";
-        private const string QueueName = "SecurIT";
-        private Access _receivedAccess;
+        ////"Your_ServiceBus_Connection_String";
+        //private const string ServiceBusConnectionString = "Endpoint=sb://securit.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RFtJ267H1qEUxXv73KqDILGAp23xMocRs+ASbCF4ajY=";
+        ////"Your_Queue_Name";
+        //private const string QueueName = "SecurIT";
+        //private Access _receivedAccess;
 
         // Per IotHub
         private ServiceClient _serviceClient;
@@ -75,7 +75,7 @@ namespace SecurITPW.Pages.Codes
 
             // Per ServiceBus
             // Ricevi json dal service bus per prendere IdPic, IdRoom, IdHouse e Time //me li inizializza?? da verificare
-            access = await ReceiveAndDeserializeJson();
+            //access = await ReceiveAndDeserializeJson();
 
             return Page();
         }
@@ -259,38 +259,38 @@ namespace SecurITPW.Pages.Codes
         }
 
         // Per ServiceBus
-        private async Task<Access> ReceiveAndDeserializeJson()
-        {
-            QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+        //private async Task<Access> ReceiveAndDeserializeJson()
+        //{
+        //    QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
 
-            // Registrazione del gestore del messaggio
-            queueClient.RegisterMessageHandler(ProcessMessagesAsync, new MessageHandlerOptions(ExceptionReceivedHandler) { MaxConcurrentCalls = 1 });
+        //    // Registrazione del gestore del messaggio
+        //    queueClient.RegisterMessageHandler(ProcessMessagesAsync, new MessageHandlerOptions(ExceptionReceivedHandler) { MaxConcurrentCalls = 1 });
 
-            // Attesa di 5 secondi per la ricezione dei messaggi
-            await Task.Delay(TimeSpan.FromSeconds(5));
+        //    // Attesa di 5 secondi per la ricezione dei messaggi
+        //    await Task.Delay(TimeSpan.FromSeconds(5));
 
-            // Chiusura del client e del gestore del messaggio
-            await queueClient.CloseAsync();
+        //    // Chiusura del client e del gestore del messaggio
+        //    await queueClient.CloseAsync();
 
-            return _receivedAccess;
-        }
+        //    return _receivedAccess;
+        //}
 
-        private async Task ProcessMessagesAsync(Microsoft.Azure.ServiceBus.Message message, CancellationToken token)
-        {
-            string json = Encoding.UTF8.GetString(message.Body);
+        //private async Task ProcessMessagesAsync(Microsoft.Azure.ServiceBus.Message message, CancellationToken token)
+        //{
+        //    string json = Encoding.UTF8.GetString(message.Body);
 
-            _receivedAccess = JsonConvert.DeserializeObject<Access>(json);
+        //    _receivedAccess = JsonConvert.DeserializeObject<Access>(json);
 
-            // Completare il messaggio per rimuoverlo dalla coda
-            QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
-            await queueClient.CompleteAsync(message.SystemProperties.LockToken);
-        }
+        //    // Completare il messaggio per rimuoverlo dalla coda
+        //    QueueClient queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+        //    await queueClient.CompleteAsync(message.SystemProperties.LockToken);
+        //}
 
-        private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
-        {
-            Console.WriteLine($"Exception occurred: {exceptionReceivedEventArgs.Exception}");
-            return Task.CompletedTask;
-        }
+        //private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
+        //{
+        //    Console.WriteLine($"Exception occurred: {exceptionReceivedEventArgs.Exception}");
+        //    return Task.CompletedTask;
+        //}
     }
 
 
