@@ -9,6 +9,7 @@ namespace SecurITPW.Pages.Accesses
 {
     //[Authorize(Roles = "Administrator")] //Solo gli utenti del gruppo Admin posso accedere alla pagina
     //[Authorize(Roles = "Admin")] //Solo gli utenti del gruppo Admin posso accedere alla pagina
+    [Authorize]
 
     public class IndexModel : PageModel
     {
