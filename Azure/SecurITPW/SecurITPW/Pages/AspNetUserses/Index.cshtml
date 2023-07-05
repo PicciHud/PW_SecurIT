@@ -5,7 +5,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Utenti</h1>
+@functions {
+    private Random random = new Random();
+    private List<string> usedColors = new List<string>();
+
+    string GenerateUniqueColor()
+    {
+        int hue = random.Next(360); // Valore casuale per la tonalità (0-359)
+        int saturation = random.Next(0, 100); // Valore casuale per la saturazione (50-100)
+        int lightness = random.Next(80, 90); // Valore casuale per la luminosità (80-90)
+
+        var color = $"hsl({hue}, {saturation}%, {lightness}%)";
+
+        while (usedColors.Contains(color))
+        {
+            hue = random.Next(360);
+            color = $"hsl({hue}, {saturation}%, {lightness}%)";
+        }
+
+        return color;
+    }
+}
 
 <table class="table">
     <thead>
@@ -23,26 +43,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.AspNetUsers) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            @if (User.IsInRole("Admin"))
-            {
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-            }
-        </tr>
-}
+        @foreach (var item in Model.AspNetUsers)
+        {
+            var rowColor = GenerateUniqueColor();
+            usedColors.Add(rowColor);
+
+            <tr class="user-row" style="background-color: @rowColor;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>
