@@ -5,6 +5,13 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .even-row {
+        background-color: #E6F3FF;
+        color: black;
+    }
+</style>
+
 <h1>Stanze</h1>
 
 <!-- Solo gli amministratori possono creare una stanza nuova -->
@@ -28,8 +35,11 @@
         </tr>
     </thead>
     <tbody>
+        @{
+            bool isEvenRow = false;
+        }
 @foreach (var item in Model.House) {
-        <tr>
+        <tr class="@(isEvenRow ? "even-row" : "odd-row")">
             <td>
                 @Html.DisplayFor(modelItem => item.IdHouse)
             </td>
@@ -45,6 +55,8 @@
                 </td>
             }
         </tr>
+        isEvenRow = !isEvenRow;
+
 }
     </tbody>
 </table>
