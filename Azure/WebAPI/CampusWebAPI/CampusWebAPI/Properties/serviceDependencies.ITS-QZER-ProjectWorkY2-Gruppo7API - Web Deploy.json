@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/CampusWebAPIapi/apis/ITS-QZER-ProjectWorkY2-Gruppo7",
+      "type": "apis.azure"
+    }
+  }
+}

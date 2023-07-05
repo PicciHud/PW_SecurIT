@@ -12960,11 +12960,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
       "projectName": "SecurITPW",
-      "projectPath": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\SecurITPW.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\SecurITPW\\SecurITPW\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

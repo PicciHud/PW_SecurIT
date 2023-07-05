@@ -155,7 +155,7 @@ namespace SecurITPW.Pages.Codes
             var httpClient = new HttpClient();
 
             // Effettua la chiamata all'API
-            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+            var response = await httpClient.GetAsync("https://its-qzer-projectworky2-gruppo7api.azurewebsites.net/api/Access");
 
             if (response.IsSuccessStatusCode)
             {
@@ -214,7 +214,7 @@ namespace SecurITPW.Pages.Codes
             var httpClient = new HttpClient();
 
             // Effettua la chiamata all'API
-            var response = await httpClient.GetAsync("https://localhost:7061/api/Access");
+            var response = await httpClient.GetAsync("https://its-qzer-projectworky2-gruppo7api.azurewebsites.net/api/Access"); //https://localhost:7061/api/Access
 
             if (response.IsSuccessStatusCode)
             {

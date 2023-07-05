@@ -12,5 +12,6 @@
     <WebStackScaffolding_DbContextTypeFullName>CampusWebAPI.Models.AccessContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DbContextDialogWidth>650,4</WebStackScaffolding_DbContextDialogWidth>
+    <NameOfLastUsedPublishProfile>C:\Users\User\Desktop\bbbb\PW_SecurIT\Azure\WebAPI\CampusWebAPI\CampusWebAPI\Properties\PublishProfiles\ITS-QZER-ProjectWorkY2-Gruppo7API - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

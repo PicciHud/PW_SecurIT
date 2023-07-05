@@ -9,133 +9,133 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SecurITPW
 build_property.RootNamespace = SecurITPW
-build_property.ProjectDir = C:\Users\User\Desktop\aaaa\PW_SecurIT\Azure\SecurITPW\SecurITPW\
+build_property.ProjectDir = C:\Users\User\Desktop\bbbb\PW_SecurIT\Azure\SecurITPW\SecurITPW\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\aaaa\PW_SecurIT\Azure\SecurITPW\SecurITPW
+build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\bbbb\PW_SecurIT\Azure\SecurITPW\SecurITPW
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Create.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Delete.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Details.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Edit.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Index.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Accesses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Create.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNwTmV0VXNlcnNlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Delete.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNwTmV0VXNlcnNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Details.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNwTmV0VXNlcnNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Edit.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNwTmV0VXNlcnNlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Index.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/AspNetUserses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNwTmV0VXNlcnNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Codes/Index.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Codes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29kZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Error.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Create.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG91c2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Delete.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG91c2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Details.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG91c2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Edit.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG91c2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Index.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Houses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG91c2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Index.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Privacy.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_LoginPartial.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/_ViewImports.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/_ViewStart.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/aaaa/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_Layout.cshtml]
+[C:/Users/User/Desktop/bbbb/PW_SecurIT/Azure/SecurITPW/SecurITPW/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xpghjv1g5k

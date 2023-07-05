@@ -11737,11 +11737,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
       "projectName": "CampusWebAPI",
-      "projectPath": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\CampusWebAPI.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\aaaa\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\bbbb\\PW_SecurIT\\Azure\\WebAPI\\CampusWebAPI\\CampusWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
