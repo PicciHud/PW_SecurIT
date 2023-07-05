@@ -12,10 +12,5 @@ Dovrà esserci inoltre un account di amministratore, che potrà visualizzare gli
 ## Lavagna di progettazione
 [Canva](https://www.canva.com/design/DAFhwMeJsE8/oL4h0_5z7GA1_Clf_wBowg/edit?utm_source=shareButton&utm_medium=email&utm_campaign=designshare)
 
-## Ruoli
-
-|User|ToDo|
-|---|---|
-|Alessandro|Backend, Frontend e Database|
-|Davide|Raspberry, Documentazione e Frontend|
-|Filippo|Pic, Presentazione|
+## Link alla pagine web
+https://its-qzer-projectworky2-gruppo7webapp.azurewebsites.net/
