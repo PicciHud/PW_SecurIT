@@ -1,6 +1,8 @@
 
 # Documentazione
 
+[Documentazione e progetttazione su Canva](https://www.canva.com/design/DAFnxP70vFU/XGwEsTBraJ2qFlWS3a0WVg/watch)
+
 ## Task
 
 In un campus, si vuole gestire gli accessi delle case. Ogni porta ha una scatola con un tastierino. Cliccando un pulsante sul tastierino numerico, il display 
